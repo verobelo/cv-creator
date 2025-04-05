@@ -10,6 +10,18 @@ function App() {
   );
 }
 
-function CVForm() {}
+function CVForm() {
+  <div className="cv-form">
+    <PersonalInfoForm />
+    <Summary />
+  </div>;
+ 
+
+}
 function CVPreview() {}
+
+
+
+
+
 export default App;
