@@ -16,7 +16,8 @@ function CVForm() {
   return (
     <div className="cv-form">
       <PersonalInfoForm />
-      {/*<Summary />
+      <Summary />
+      {/*
     <SkillsList />
     <ExperienceList />
     <ProjectsList />
@@ -28,8 +29,8 @@ function CVForm() {
 function PersonalInfoForm() {
   return (
     <section className="personal-info">
-      <div className="personal-info header">
-        <img src="./public/down-arrow.png" width={25} height={25} />
+      <div className="personal-info__header header">
+        <img src="/down-arrow.png" width={25} height={25} />
         <h1>Personal Information</h1>
       </div>
       <div className="personal-info__form">
@@ -67,12 +68,19 @@ function PersonalInfoForm() {
 }
 
 function Summary() {
-  <section className="summary">
-    <div className="summary header">
-      <img src="./public/down-arrow.png" width={25} height={25} />
-      <h1>Personal Information</h1>
-    </div>
-  </section>;
+  return (
+    <section className="summary">
+      <div className="summary__header header">
+        <img src="/down-arrow.png" width={25} height={25} />
+        <h1>Summary</h1>
+      </div>
+      <div className="summary__form">
+        <label>
+          <textarea name="summary" value="" rows={5} />
+        </label>
+      </div>
+    </section>
+  );
 }
 
 function CVPreview() {
