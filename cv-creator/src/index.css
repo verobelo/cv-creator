@@ -34,7 +34,7 @@ footer {
 .cv-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-rows: 0.5fr 2fr 1fr;
   grid-template-areas:
     "header header"
     "form preview"
@@ -46,6 +46,8 @@ footer {
   grid-area: form;
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  width: 80%;
 }
 
 .cv-preview {
@@ -55,6 +57,7 @@ footer {
 .header {
   display: flex;
   gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .header img {
@@ -64,13 +67,44 @@ footer {
 .personal-info__form {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .personal-info label {
   display: flex;
   justify-content: space-between;
 }
+input {
+  width: 70%;
+}
 
 textarea {
   width: 100%;
+}
+
+.skills__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.skills__form label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.skills__form button {
+  align-self: flex-start;
+  padding: 0.2rem 0.5rem;
+  border: none;
+  background-color: transparent;
+}
+
+.skills__form button:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.skill__group {
+  border: 2px dotted black;
+  padding: 8px;
 }
