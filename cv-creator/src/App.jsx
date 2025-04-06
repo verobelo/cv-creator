@@ -19,9 +19,10 @@ function CVForm() {
       <Summary />
       <SkillsList />
       <ExperienceList />
+      <ProjectsList />
       {/* 
     
-    <ProjectsList />
+    
     <Education />*/}
     </div>
   );
@@ -34,7 +35,7 @@ function PersonalInfoForm() {
         <img src="/down-arrow.png" width={25} height={25} />
         <h1>Personal Information</h1>
       </div>
-      <div className="personal-info__form">
+      <div className="personal-info__form form">
         <label>
           <strong>Full Name:</strong>
           <input type="text" name="name" value="" />
@@ -75,7 +76,7 @@ function Summary() {
         <img src="/down-arrow.png" width={25} height={25} />
         <h1>Summary</h1>
       </div>
-      <div className="summary__form">
+      <div className="summary__form form">
         <label>
           <textarea name="summary" value="" rows={5} />
         </label>
@@ -91,7 +92,7 @@ function SkillsList() {
         <img src="/down-arrow.png" width={25} height={25} />
         <h1>Skills</h1>
       </div>
-      <div className="skills__form">
+      <div className="skills__form form">
         <button type="button">+ Add</button>
         <SkillGroup />
       </div>
@@ -135,7 +136,6 @@ function ExperienceList() {
       <div className="experience__form">
         <button type="button">+ Add</button>
         <Experience />
-        <Experience />
       </div>
     </section>
   );
@@ -143,15 +143,16 @@ function ExperienceList() {
 
 function Experience() {
   return (
-    <div className="experience__item">
-      <label>
-        <strong>Company Name: </strong>
-        <input type="text" name="company-name" value="Company Name" />
-      </label>
+    <div className="experience__item form">
       <label>
         <strong>Position: </strong>
-        <input type="text" name="position" value="Position" />
+        <input type="text" name="position" value="" />
       </label>
+      <label>
+        <strong>Company Name: </strong>
+        <input type="text" name="company-name" value="" />
+      </label>
+
       <label>
         <strong>Start Date: </strong>
         <input type="date" name="start-date" value="" />
@@ -163,6 +164,48 @@ function Experience() {
       <label>
         <strong>Description: </strong>
         <textarea name="description" rows={5} />
+      </label>
+    </div>
+  );
+}
+
+function ProjectsList() {
+  return (
+    <section className="projects">
+      <div className="projects__header header">
+        <img src="/down-arrow.png" width={25} height={25} />
+        <h1>Projects</h1>
+      </div>
+      <div className="projects__form">
+        <button type="button">+ Add</button>
+        <Project />
+      </div>
+    </section>
+  );
+}
+
+function Project() {
+  return (
+    <div className="project form">
+      <label>
+        <strong>Project Name:</strong>
+        <input type="text" name="project-name" value="" />
+      </label>
+      <label>
+        <strong>Technologies:</strong>
+        <input type="text" name="technology" value="" />
+      </label>
+      <label>
+        <strong>Description</strong>
+        <textarea value="" />
+      </label>
+      <label>
+        <strong>Code</strong>
+        <input type="text" name="code" value="" />
+      </label>
+      <label>
+        <strong>Demo</strong>
+        <input type="text" name="demo" value="" />
       </label>
     </div>
   );
