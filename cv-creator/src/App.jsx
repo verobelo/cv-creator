@@ -17,9 +17,10 @@ function CVForm() {
     <div className="cv-form">
       <PersonalInfoForm />
       <Summary />
-      {/*
-    <SkillsList />
-    <ExperienceList />
+      <SkillsList />
+      <ExperienceList />
+      {/* 
+    
     <ProjectsList />
     <Education />*/}
     </div>
@@ -35,31 +36,31 @@ function PersonalInfoForm() {
       </div>
       <div className="personal-info__form">
         <label>
-          Full Name:
+          <strong>Full Name:</strong>
           <input type="text" name="name" value="" />
         </label>
         <label>
-          Email:
+          <strong>Email:</strong>
           <input type="email" name="email" value="" />
         </label>
         <label>
-          Phone Number:
+          <strong>Phone Number:</strong>
           <input type="tel" name="phone" value="" />
         </label>
         <label>
-          Address:
+          <strong>Address:</strong>
           <input type="text" name="address" value="" />
         </label>
         <label>
-          Linkedin:
+          <strong>Linkedin:</strong>
           <input type="text" name="linkedin" value="" />
         </label>
         <label>
-          GitHub:
+          <strong>GitHub:</strong>
           <input type="text" name="github" value="" />
         </label>
         <label>
-          Personal Website:
+          <strong>Personal Website:</strong>
           <input type="text" name="website" value="" />
         </label>
       </div>
@@ -80,6 +81,90 @@ function Summary() {
         </label>
       </div>
     </section>
+  );
+}
+
+function SkillsList() {
+  return (
+    <section className="skills">
+      <div className="skills__header header">
+        <img src="/down-arrow.png" width={25} height={25} />
+        <h1>Skills</h1>
+      </div>
+      <div className="skills__form">
+        <button type="button">+ Add</button>
+        <SkillGroup />
+      </div>
+    </section>
+  );
+}
+
+function SkillGroup() {
+  return (
+    <div className="skill__group">
+      <label>
+        <strong>Skill Group: </strong>
+        <input type="text" name="skill-group" value="Frameworks" />
+      </label>
+
+      <ul>
+        <Skill />
+        <Skill />
+      </ul>
+      <button type="button">+ Add</button>
+    </div>
+  );
+}
+
+function Skill() {
+  return (
+    <>
+      <li className="skill">React</li>
+      <button type="button">x</button>
+    </>
+  );
+}
+
+function ExperienceList() {
+  return (
+    <section className="experience">
+      <div className="experience__header header">
+        <img src="/down-arrow.png" width={25} height={25} />
+        <h1>Experience</h1>
+      </div>
+      <div className="experience__form">
+        <button type="button">+ Add</button>
+        <Experience />
+        <Experience />
+      </div>
+    </section>
+  );
+}
+
+function Experience() {
+  return (
+    <div className="experience__item">
+      <label>
+        <strong>Company Name: </strong>
+        <input type="text" name="company-name" value="Company Name" />
+      </label>
+      <label>
+        <strong>Position: </strong>
+        <input type="text" name="position" value="Position" />
+      </label>
+      <label>
+        <strong>Start Date: </strong>
+        <input type="date" name="start-date" value="" />
+      </label>
+      <label>
+        <strong>End Date: </strong>
+        <input type="date" name="end-date" value="" />
+      </label>
+      <label>
+        <strong>Description: </strong>
+        <textarea name="description" rows={5} />
+      </label>
+    </div>
   );
 }
 
