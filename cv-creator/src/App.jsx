@@ -20,10 +20,7 @@ function CVForm() {
       <SkillsList />
       <ExperienceList />
       <ProjectsList />
-      {/* 
-    
-    
-    <Education />*/}
+      <EducationList />
     </div>
   );
 }
@@ -92,8 +89,8 @@ function SkillsList() {
         <img src="/down-arrow.png" width={25} height={25} />
         <h1>Skills</h1>
       </div>
+      <button type="button">+ Add</button>
       <div className="skills__form form">
-        <button type="button">+ Add</button>
         <SkillGroup />
       </div>
     </section>
@@ -105,7 +102,12 @@ function SkillGroup() {
     <div className="skill__group">
       <label>
         <strong>Skill Group: </strong>
-        <input type="text" name="skill-group" value="Frameworks" />
+        <input
+          type="text"
+          name="skill-group"
+          value=""
+          placeholder="Frameworks, languages, soft skills etc"
+        />
       </label>
 
       <ul>
@@ -196,16 +198,65 @@ function Project() {
         <input type="text" name="technology" value="" />
       </label>
       <label>
-        <strong>Description</strong>
-        <textarea value="" />
+        <strong>Description:</strong>
+        <textarea name="description" value="" rows={5} />
       </label>
       <label>
-        <strong>Code</strong>
-        <input type="text" name="code" value="" />
+        <strong>Code:</strong>
+        <input
+          type="text"
+          name="code"
+          value=""
+          placeholder="Github repository"
+        />
       </label>
       <label>
-        <strong>Demo</strong>
-        <input type="text" name="demo" value="" />
+        <strong>Demo:</strong>
+        <input
+          type="text"
+          name="demo"
+          value=""
+          placeholder="Link to your website"
+        />
+      </label>
+    </div>
+  );
+}
+
+function EducationList() {
+  return (
+    <section className="education">
+      <div className="education__header header">
+        <img src="/down-arrow.png" width={25} height={25} />
+        <h1>Education & Certificates</h1>
+      </div>
+      <div className="education__form">
+        <button type="button">+ Add</button>
+        <Education />
+      </div>
+    </section>
+  );
+}
+
+function Education() {
+  return (
+    <div className="education__item form">
+      <label>
+        <strong>Institution Name:</strong>
+        <input type="text" name="institution-name" value="" />
+      </label>
+      <label>
+        <strong>Degree:</strong>
+        <input
+          type="text"
+          name="degree"
+          value=""
+          placeholder="Degree or Certification name"
+        />
+      </label>
+      <label>
+        <strong>Completion Date:</strong>
+        <input type="date" name="completion-date" value="" />
       </label>
     </div>
   );
