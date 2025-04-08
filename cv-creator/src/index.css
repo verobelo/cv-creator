@@ -6,8 +6,24 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "eb_garamonditalic";
+  src: url("ebgaramond-italic-variablefont_wght-webfont.woff2") format("woff2"),
+    url("ebgaramond-italic-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "eb_garamondregular";
+  src: url("ebgaramond-variablefont_wght-webfont.woff2") format("woff2"),
+    url("ebgaramond-variablefont_wght-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: "cutive_monoregular";
+  font-family: "cutive_monoregular", serif;
 }
 
 header,
@@ -34,12 +50,13 @@ footer {
 .cv-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.2fr 2fr 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"
     "form preview"
     "footer footer";
   justify-items: center;
+  row-gap: 1rem;
 }
 
 .cv-form {
@@ -173,4 +190,11 @@ button:hover {
 .education__item label {
   display: flex;
   justify-content: space-between;
+}
+
+.cv-preview {
+  font-family: "eb_garamondregular", serif;
+  width: 80%;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
