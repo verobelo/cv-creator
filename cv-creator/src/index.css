@@ -209,9 +209,11 @@ button:hover {
 }
 
 .cv-preview section:not(:first-child) {
-  border-top: 1px solid black;
-  margin-top: 1rem;
   padding: 1rem 0;
+}
+
+.cv-preview section h2 {
+  border-bottom: 1px solid black;
 }
 
 .personal-info-preview__contacts {
