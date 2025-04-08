@@ -1,7 +1,7 @@
 export default function Header() {
   return (
     <header>
-      <img src="./public/typewriter.png" alt="logo" width={48} height={48} />
+      <img src="like.png" alt="logo" width={45} height={45} />
       <h2>Git That Job</h2>
     </header>
   );
