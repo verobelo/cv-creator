@@ -208,6 +208,12 @@ button:hover {
   letter-spacing: 2px;
 }
 
+.cv-preview section:not(:first-child) {
+  border-top: 1px solid black;
+  margin-top: 1rem;
+  padding: 1rem 0;
+}
+
 .personal-info-preview__contacts {
   justify-self: end;
 }
@@ -223,4 +229,27 @@ button:hover {
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 2.5rem;
+}
+
+.skills-preview__group,
+.skills-preview__group ul {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.skills-preview__group ul {
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.skills-preview__group li {
+  list-style: none;
+}
+
+.skills-preview__group li::after {
+  content: " | ";
+}
+
+.skills-preview__group li:last-child::after {
+  content: "";
 }
