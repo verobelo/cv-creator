@@ -266,9 +266,11 @@ function CVPreview() {
   return (
     <div className="cv-preview">
       <PersonalInfoPreview />
-      {/*
       <SummaryPreview />
       <SkillsListPreview />
+      {/*
+      
+      
       <ExperienceListPreview />
       <ProjectsListPreview />
       <EducationListPreview />*/}
@@ -278,7 +280,7 @@ function CVPreview() {
 
 function PersonalInfoPreview() {
   return (
-    <div className="personal-info-preview">
+    <section className="personal-info-preview">
       <h1>Anna-Isabella BROOKS</h1>
       <ul className="personal-info-preview__contacts">
         <li>
@@ -306,7 +308,44 @@ function PersonalInfoPreview() {
           github.com/annabrooks
         </li>
       </ul>
-    </div>
+    </section>
+  );
+}
+
+function SummaryPreview() {
+  return (
+    <section className="summary-preview">
+      <p>
+        Self-taught Software Developer with more than 5 years of experience.
+        Skilled in React, Tailwind and Node.js. Created more 50+
+        fully-functional web applications. Specialized in Responsive and
+        Accessible Web Design and Agile work environment.
+      </p>
+    </section>
+  );
+}
+
+function SkillsListPreview() {
+  return (
+    <section className="skills-preview">
+      <h2>Skills</h2>
+      <div className="skills-preview__group">
+        <h3>Frameworks: </h3>
+        <ul>
+          <li>React</li>
+          <li>Node.js</li>
+          <li>Express</li>
+        </ul>
+      </div>
+      <div className="skills-preview__group">
+        <h3>Languages: </h3>
+        <ul>
+          <li>JavaScript</li>
+          <li>HTML</li>
+          <li>CSS</li>
+        </ul>
+      </div>
+    </section>
   );
 }
 
