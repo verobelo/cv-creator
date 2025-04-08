@@ -195,7 +195,32 @@ button:hover {
 
 .cv-preview {
   font-family: "eb_garamondregular", serif;
-  width: 80%;
-  padding: 1rem;
+  width: 21cm;
+  height: 29.7cm;
+  padding: 1.5cm 2cm;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.cv-preview h1 {
+  font-weight: 400;
+  font-size: 40px;
+  margin: auto 0;
+  letter-spacing: 2px;
+}
+
+.personal-info-preview__contacts {
+  justify-self: end;
+}
+
+.personal-info-preview__contacts li {
+  list-style: none;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.personal-info-preview {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2.5rem;
 }
