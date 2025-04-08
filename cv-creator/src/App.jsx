@@ -263,7 +263,51 @@ function Education() {
 }
 
 function CVPreview() {
-  return <div className="cv-preview">CV Preview</div>;
+  return (
+    <div className="cv-preview">
+      <PersonalInfoPreview />
+      {/*
+      <SummaryPreview />
+      <SkillsListPreview />
+      <ExperienceListPreview />
+      <ProjectsListPreview />
+      <EducationListPreview />*/}
+    </div>
+  );
+}
+
+function PersonalInfoPreview() {
+  return (
+    <div className="personal-info-preview">
+      <h1>Anna-Isabella BROOKS</h1>
+      <ul className="personal-info-preview__contacts">
+        <li>
+          <img src="email.png" alt="email icon" width={15} height={15} />
+          annbrooks@gmail.com
+        </li>
+        <li>
+          <img src="telephone.png" alt="phone icon" width={15} height={15} />
+          +41999665478
+        </li>
+        <li>
+          <img src="location.png" alt="home icon" width={15} height={15} />
+          New York
+        </li>
+        <li>
+          <img src="linkedin.png" alt="linkedin icon" width={15} height={15} />
+          linkedin.com/in/annabrooks
+        </li>
+        <li>
+          <img src="github.png" alt="github icon" width={15} height={15} />
+          GitHub
+        </li>
+        <li>
+          <img src="web.png" alt="web icon" width={15} height={15} />
+          github.com/annabrooks
+        </li>
+      </ul>
+    </div>
+  );
 }
 
 export default App;
