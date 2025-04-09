@@ -214,7 +214,7 @@ button:hover {
 
 .cv-preview section h2 {
   border-bottom: 2px solid rgb(199, 198, 198);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.5rem;
 }
 
 .personal-info-preview__contacts {
@@ -257,8 +257,12 @@ button:hover {
   content: "";
 }
 
-.experience-preview li {
-  list-style: inside;
+.experience-preview__item:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+.experience-preview__list li {
+  list-style: none;
 }
 
 .experience-preview__top {
@@ -282,4 +286,22 @@ button:hover {
 
 .experience-preview__top--right p:nth-child(1)::after {
   content: "  |  ";
+}
+
+.experience-preview__description ul li {
+  list-style: inside;
+}
+
+.projects-preview__list li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+}
+
+.project-preview__links {
+  display: flex;
+  gap: 1rem;
+}
+
+.project-preview__links a {
+  color: black;
 }
