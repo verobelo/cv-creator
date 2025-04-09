@@ -68,6 +68,24 @@ footer {
   width: 70%;
 }
 
+.clear-button {
+  margin-left: auto;
+}
+
+.clear-button:hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.clear-button:active img {
+  transform: scale(0.95);
+  filter: brightness(0.9);
+}
+
+.cv-form section:hover {
+  cursor: pointer;
+}
+
 .cv-preview {
   grid-area: preview;
 }
@@ -272,10 +290,11 @@ button:hover {
 
 .experience-preview__top--left {
   display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
-.experience-preview__top--left h4::after {
+.experience-preview__top--left h3::after {
   content: " | ";
 }
 
@@ -289,8 +308,7 @@ button:hover {
 }
 
 .projects-preview__list li {
-  margin-left: 1rem;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.5rem 1rem;
 }
 
 .project-preview__links {
