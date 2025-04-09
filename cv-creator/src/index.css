@@ -50,7 +50,7 @@ footer {
 
 .cv-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: auto auto;
   grid-template-rows: auto 1fr auto;
   grid-template-areas:
     "header header"
@@ -284,16 +284,12 @@ button:hover {
   gap: 0.5rem;
 }
 
-.experience-preview__top--right p:nth-child(1)::after {
-  content: "  |  ";
-}
-
 .experience-preview__description ul li {
   list-style: inside;
 }
 
 .projects-preview__list li {
-  list-style: none;
+  margin-left: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -304,4 +300,14 @@ button:hover {
 
 .project-preview__links a {
   color: black;
+}
+
+.education-preview__item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-preview__item--right {
+  display: flex;
+  gap: 0.5rem;
 }
