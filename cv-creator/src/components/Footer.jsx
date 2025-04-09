@@ -1,9 +1,7 @@
 export default function Footer() {
   return (
     <footer>
-      <a
-        href="https://www.flaticon.com/free-icons/down-arrow"
-        title="down arrow icons">
+      <a href="https://www.flaticon.com/authors/th-studio">
         Icons created by <strong>th studio</strong> - Flaticon
       </a>
     </footer>
