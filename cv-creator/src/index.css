@@ -213,7 +213,8 @@ button:hover {
 }
 
 .cv-preview section h2 {
-  border-bottom: 1px solid grey;
+  border-bottom: 2px solid rgb(199, 198, 198);
+  margin-bottom: 0.3rem;
 }
 
 .personal-info-preview__contacts {
@@ -254,4 +255,31 @@ button:hover {
 
 .skills-preview__group li:last-child::after {
   content: "";
+}
+
+.experience-preview li {
+  list-style: inside;
+}
+
+.experience-preview__top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.experience-preview__top--left {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.experience-preview__top--left h4::after {
+  content: " | ";
+}
+
+.experience-preview__top--right {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.experience-preview__top--right p:nth-child(1)::after {
+  content: "  |  ";
 }
