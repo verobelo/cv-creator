@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -13,53 +14,175 @@ function App() {
 }
 
 function CVForm() {
+  const [personalInfo, setPersonalInfo] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    address: "",
+    linkedin: "",
+    github: "",
+    website: "",
+  });
+
+  function handleClear() {
+    setPersonalInfo({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      linkedin: "",
+      github: "",
+      website: "",
+    });
+  }
   return (
     <div className="cv-form">
-      <PersonalInfoForm />
-      <Summary />
-      <SkillsList />
-      <ExperienceList />
-      <ProjectsList />
-      <EducationList />
+      <FoldableSection
+        title="Personal Information"
+        handleClear={handleClear}>
+        <PersonalInfoForm 
+        personalInfo={personalInfo}
+        setPersonalInfo={setPersonalInfo}/>
+      </FoldableSection>
+      <FoldableSection title="Summary">
+        <Summary />
+      </FoldableSection>
+      <FoldableSection title="Skills">
+        <SkillsList />
+      </FoldableSection>
+      <FoldableSection title="Experience">
+        <ExperienceList />
+      </FoldableSection>
+      <FoldableSection title="Projects">
+        <ProjectsList />
+      </FoldableSection>
+      <FoldableSection title="Education">
+        <EducationList />
+      </FoldableSection>
     </div>
   );
 }
 
-function PersonalInfoForm() {
+function FoldableSection({ title, children, handleClear}) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  function handleOpen() {
+    setIsOpen((prev) => !prev);
+  }
+
+  return (
+    <section className="foldable-section">
+      <div
+        className="foldable-section__header header"
+        role="button"
+        aria-expanded={isOpen}
+        tabIndex={0}
+      >
+        <img
+          src={isOpen ? "/down-arrow.png" : "/chevron.png"}
+          alt="toggle"
+          width={25}
+          height={25}
+        />
+        <h1 onClick={handleOpen}>{title}</h1>
+        <button
+          type="button"
+          aria-label="Clear section"
+          className="clear-button"
+          onClick={handleClear}>
+          <img
+            src="/vacuum-cleaner.png"
+            alt="vacuum cleaner icon"
+            width={30}
+            height={30}
+          />
+        </button>
+      </div>
+      <>{isOpen && children}</>
+    </section>
+  );
+}
+
+function PersonalInfoForm({personalInfo, setPersonalInfo}) {
   return (
     <section className="personal-info">
-      <div className="personal-info__header header">
-        <img src="/down-arrow.png" width={25} height={25} />
-        <h1>Personal Information</h1>
-      </div>
       <div className="personal-info__form form">
         <label>
           <strong>Full Name:</strong>
-          <input type="text" name="name" value="" />
+          <input
+            type="text"
+            name="name"
+            value={personalInfo.name}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, name: e.target.value })
+            }
+          />
         </label>
         <label>
           <strong>Email:</strong>
-          <input type="email" name="email" value="" />
+          <input
+            type="email"
+            name="email"
+            value={personalInfo.email}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, email: e.target.value })
+            }
+          />
         </label>
         <label>
           <strong>Phone Number:</strong>
-          <input type="tel" name="phone" value="" />
+          <input
+            type="tel"
+            name="phone"
+            value={personalInfo.phone}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, phone: e.target.value })
+            }
+          />
         </label>
         <label>
           <strong>Address:</strong>
-          <input type="text" name="address" value="" />
+          <input
+            type="text"
+            name="address"
+            value={personalInfo.address}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, address: e.target.value })
+            }
+          />
         </label>
         <label>
           <strong>Linkedin:</strong>
-          <input type="text" name="linkedin" value="" />
+          <input
+            type="text"
+            name="linkedin"
+            value={personalInfo.linkedin}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, linkedin: e.target.value })
+            }
+          />
         </label>
         <label>
           <strong>GitHub:</strong>
-          <input type="text" name="github" value="" />
+          <input
+            type="text"
+            name="github"
+            value={personalInfo.github}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, github: e.target.value })
+            }
+          />
         </label>
         <label>
           <strong>Personal Website:</strong>
-          <input type="text" name="website" value="" />
+          <input
+            type="text"
+            name="website"
+            value={personalInfo.website}
+            onChange={(e) =>
+              setPersonalInfo({ ...personalInfo, website: e.target.value })
+            }
+          />
         </label>
       </div>
     </section>
@@ -69,10 +192,6 @@ function PersonalInfoForm() {
 function Summary() {
   return (
     <section className="summary">
-      <div className="summary__header header">
-        <img src="/down-arrow.png" width={25} height={25} />
-        <h1>Summary</h1>
-      </div>
       <div className="summary__form form">
         <label>
           <textarea name="summary" value="" rows={5} />
@@ -85,10 +204,6 @@ function Summary() {
 function SkillsList() {
   return (
     <section className="skills">
-      <div className="skills__header header">
-        <img src="/down-arrow.png" width={25} height={25} />
-        <h1>Skills</h1>
-      </div>
       <button type="button">+ Add</button>
       <div className="skills__form form">
         <SkillGroup />
@@ -131,10 +246,6 @@ function Skill() {
 function ExperienceList() {
   return (
     <section className="experience">
-      <div className="experience__header header">
-        <img src="/down-arrow.png" width={25} height={25} />
-        <h1>Experience</h1>
-      </div>
       <div className="experience__form">
         <button type="button">+ Add</button>
         <Experience />
@@ -177,10 +288,6 @@ function Experience() {
 function ProjectsList() {
   return (
     <section className="projects">
-      <div className="projects__header header">
-        <img src="/down-arrow.png" width={25} height={25} />
-        <h1>Projects</h1>
-      </div>
       <div className="projects__form">
         <button type="button">+ Add</button>
         <Project />
@@ -229,10 +336,6 @@ function Project() {
 function EducationList() {
   return (
     <section className="education">
-      <div className="education__header header">
-        <img src="/down-arrow.png" width={25} height={25} />
-        <h1>Education & Certificates</h1>
-      </div>
       <div className="education__form">
         <button type="button">+ Add</button>
         <Education />
@@ -358,13 +461,14 @@ function ExperienceListPreview() {
           <div className="experience-preview__top">
             <div className="experience-preview__top--left">
               <h3>Freelance Frontend Developer</h3>
-              <p>Fiverr</p>
+              <p>Fiver</p>
             </div>
             <div className="experience-preview__top--right">
               <p>
                 <span>Remote</span>
-                <span>05.2022</span>
                 <span> | </span>
+                <span>05.2022</span>
+                <span> - </span>
                 <span>Current</span>
               </p>
             </div>
@@ -381,13 +485,14 @@ function ExperienceListPreview() {
           <div className="experience-preview__top">
             <div className="experience-preview__top--left">
               <h3>Web Development Intern</h3>
-              <p>CodeCamp</p>
+              <p>New Technologies</p>
             </div>
             <div className="experience-preview__top--right">
               <p>
                 <span>New York</span>
-                <span>01.2021</span>
                 <span> | </span>
+                <span>01.2021</span>
+                <span> - </span>
                 <span>06.2021</span>
               </p>
             </div>
