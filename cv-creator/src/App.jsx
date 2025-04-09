@@ -245,10 +245,6 @@ function Education() {
   return (
     <div className="education__item form">
       <label>
-        <strong>Institution Name:</strong>
-        <input type="text" name="institution-name" value="" />
-      </label>
-      <label>
         <strong>Degree:</strong>
         <input
           type="text"
@@ -258,8 +254,12 @@ function Education() {
         />
       </label>
       <label>
+        <strong>Institution Name:</strong>
+        <input type="text" name="institution-name" value="" />
+      </label>
+      <label>
         <strong>Completion Date:</strong>
-        <input type="date" name="completion-date" value="" />
+        <input type="month" name="completion-date" value="" />
       </label>
     </div>
   );
@@ -273,12 +273,7 @@ function CVPreview() {
       <SkillsListPreview />
       <ExperienceListPreview />
       <ProjectsListPreview />
-      {/*
-      
-      
-      
-      
-      <EducationListPreview />*/}
+      <EducationListPreview />
     </div>
   );
 }
@@ -362,13 +357,16 @@ function ExperienceListPreview() {
         <li className="experience-preview__item">
           <div className="experience-preview__top">
             <div className="experience-preview__top--left">
-              <h4>Freelance Frontend Developer</h4>
+              <h3>Freelance Frontend Developer</h3>
               <p>Fiverr</p>
             </div>
             <div className="experience-preview__top--right">
-              <p>Remote</p>
-              <p>05.2022</p>
-              <p>Current</p>
+              <p>
+                <span>Remote</span>
+                <span>05.2022</span>
+                <span> | </span>
+                <span>Current</span>
+              </p>
             </div>
           </div>
           <div className="experience-preview__description">
@@ -382,13 +380,16 @@ function ExperienceListPreview() {
         <li className="experience-preview__item">
           <div className="experience-preview__top">
             <div className="experience-preview__top--left">
-              <h4>Web Development Intern</h4>
+              <h3>Web Development Intern</h3>
               <p>CodeCamp</p>
             </div>
             <div className="experience-preview__top--right">
-              <p>On-site</p>
-              <p>01.2021</p>
-              <p>06.2021</p>
+              <p>
+                <span>New York</span>
+                <span>01.2021</span>
+                <span> | </span>
+                <span>06.2021</span>
+              </p>
             </div>
           </div>
           <div className="experience-preview__description">
@@ -407,7 +408,7 @@ function ProjectsListPreview() {
   return (
     <section className="projects-preview">
       <h2>Projects</h2>
-      <ul className="projects-preview__list">
+      <ol className="projects-preview__list">
         <li className="project-preview__item">
           <h3>CV Creator (React, CSS)</h3>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
@@ -445,9 +446,42 @@ function ProjectsListPreview() {
             </a>
           </div>
         </li>
-      </ul>
+      </ol>
     </section>
   );
 }
 
+function EducationListPreview() {
+  return (
+    <section className="education-preview">
+      <h2>Education & Certifications</h2>
+      <ul className="education-preview__list">
+        <li className="education-preview__item">
+          <div className="education-preview__item--left">
+            <h3>Bachelor Degree in Computer Science</h3>
+          </div>
+          <div className="education-preview__item--right">
+            <p>
+              <span>New York State University</span>
+              <span> | </span>
+              <span>06.2012</span>
+            </p>
+          </div>
+        </li>
+        <li className="education-preview__item">
+          <div className="education-preview__item--left">
+            <h3>Meta Software Developer Certification</h3>
+          </div>
+          <div className="education-preview__item--right">
+            <p>
+              <span>Coursera</span>
+              <span> | </span>
+              <span>04.2021</span>
+            </p>
+          </div>
+        </li>
+      </ul>
+    </section>
+  );
+}
 export default App;
