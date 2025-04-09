@@ -154,14 +154,17 @@ function Experience() {
         <strong>Company Name: </strong>
         <input type="text" name="company-name" value="" />
       </label>
-
+      <label>
+        <strong>Company Address: </strong>
+        <input type="text" name="company-address" value="" />
+      </label>
       <label>
         <strong>Start Date: </strong>
-        <input type="date" name="start-date" value="" />
+        <input type="month" name="start-date" value="" />
       </label>
       <label>
         <strong>End Date: </strong>
-        <input type="date" name="end-date" value="" />
+        <input type="month" name="end-date" value="" />
       </label>
       <label>
         <strong>Description: </strong>
@@ -268,11 +271,13 @@ function CVPreview() {
       <PersonalInfoPreview />
       <SummaryPreview />
       <SkillsListPreview />
+      <ExperienceListPreview />
+      <ProjectsListPreview />
       {/*
       
       
-      <ExperienceListPreview />
-      <ProjectsListPreview />
+      
+      
       <EducationListPreview />*/}
     </div>
   );
@@ -345,6 +350,44 @@ function SkillsListPreview() {
           <li>CSS</li>
         </ul>
       </div>
+    </section>
+  );
+}
+
+function ExperienceListPreview() {
+  return (
+    <section className="experience-preview">
+      <h2>Experience</h2>
+      <div className="experience-preview__top">
+        <div className="experience-preview__top--left">
+          <h4>Freelance Frontend Developer</h4>
+          <p>Fiver</p>
+        </div>
+        <div className="experience-preview__top--right">
+          <p>remote</p>
+          <p>
+            <span>05.2022</span>
+            <span> - </span>
+            <span>current</span>
+          </p>
+        </div>
+      </div>
+      <div className="experience-preview__description">
+        <ul>
+          <li>bullet point 1</li>
+          <li>bullet point 1</li>
+          <li>bullet point 1</li>
+          <li>bullet point 1</li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+function ProjectsListPreview() {
+  return (
+    <section className="projects-preview">
+      <h2>Projects</h2>
     </section>
   );
 }
