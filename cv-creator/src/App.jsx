@@ -1,19 +1,10 @@
 import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import FoldableSection from "./components/FoldableSection";
+import PersonalInfoForm from "./components/PersonalInfoForm";
 
 function App() {
-  return (
-    <div className="cv-container">
-      <Header />
-      <CVForm />
-      <CVPreview />
-      <Footer />
-    </div>
-  );
-}
-
-function CVForm() {
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
     email: "",
@@ -24,8 +15,25 @@ function CVForm() {
     website: "",
   });
 
+  return (
+    <div className="cv-container">
+      <Header />
+      <CVForm
+        personalData={personalInfo}
+        updatePersonalData={setPersonalInfo}
+      />
+      <CVPreview
+        personalData={personalInfo}
+        updatePersonalData={setPersonalInfo}
+      />
+      <Footer />
+    </div>
+  );
+}
+
+function CVForm({ personalData, updatePersonalData }) {
   function handleClearPersonal() {
-    setPersonalInfo({
+    updatePersonalData({
       name: "",
       email: "",
       phone: "",
@@ -36,20 +44,14 @@ function CVForm() {
     });
   }
 
-  const [summary, setSummary] = useState("");
-
-  function handleClearSummary() {
-    setSummary("");
-  }
-
   return (
     <div className="cv-form">
       <FoldableSection
         title="Personal Information"
         handleClear={handleClearPersonal}>
-        <PersonalInfoForm data={personalInfo} updateData={setPersonalInfo} />
+        <PersonalInfoForm data={personalData} updateData={updatePersonalData} />
       </FoldableSection>
-      <FoldableSection title="Summary" handleClear={handleClearSummary}>
+      {/*<FoldableSection title="Summary" handleClear={handleClearSummary}>
         <Summary data={summary} updateData={setSummary} />
       </FoldableSection>
       <FoldableSection title="Skills">
@@ -63,123 +65,60 @@ function CVForm() {
       </FoldableSection>
       <FoldableSection title="Education">
         <EducationList />
-      </FoldableSection>
+      </FoldableSection>*/}
     </div>
   );
 }
 
-function FoldableSection({ title, children, handleClear }) {
-  const [isOpen, setIsOpen] = useState(true);
-
-  function handleOpen() {
-    setIsOpen((prev) => !prev);
-  }
-
+function CVPreview({ personalData }) {
   return (
-    <section className="foldable-section">
-      <div
-        className="foldable-section__header header"
-        role="button"
-        aria-expanded={isOpen}
-        tabIndex={0}>
-        <img
-          src={isOpen ? "/down-arrow.png" : "/chevron.png"}
-          alt="toggle"
-          width={25}
-          height={25}
-        />
-        <h1 onClick={handleOpen}>{title}</h1>
-        <button
-          type="button"
-          aria-label="Clear section"
-          className="clear-button"
-          onClick={handleClear}>
-          <img
-            src="/vacuum-cleaner.png"
-            alt="vacuum cleaner icon"
-            width={30}
-            height={30}
-          />
-        </button>
-      </div>
-      <>{isOpen && children}</>
+    <div className="cv-preview">
+      <PersonalInfoPreview data={personalData} />
+      {/*<SummaryPreview />
+      <SkillsListPreview />
+      <ExperienceListPreview />
+      <ProjectsListPreview />
+      <EducationListPreview />*/}
+    </div>
+  );
+}
+
+function PersonalInfoPreview({ data }) {
+  return (
+    <section className="personal-info-preview">
+      <h1>{data.name}</h1>
+      <ul className="personal-info-preview__contacts">
+        <li>
+          <img src="email.png" alt="email icon" width={15} height={15} />
+          {data.email}
+        </li>
+        <li>
+          <img src="telephone.png" alt="phone icon" width={15} height={15} />
+          {data.phone}
+        </li>
+        <li>
+          <img src="location.png" alt="home icon" width={15} height={15} />
+          {data.address}
+        </li>
+        <li>
+          <img src="linkedin.png" alt="linkedin icon" width={15} height={15} />
+          {data.linkedin}
+        </li>
+        <li>
+          <img src="github.png" alt="github icon" width={15} height={15} />
+          {data.github}
+        </li>
+        <li>
+          <img src="web.png" alt="web icon" width={15} height={15} />
+          {data.website}
+        </li>
+      </ul>
     </section>
   );
 }
 
-function PersonalInfoForm({ data, updateData }) {
-  return (
-    <section className="personal-info">
-      <div className="personal-info__form form">
-        <label>
-          <strong>Full Name:</strong>
-          <input
-            type="text"
-            name="name"
-            value={data.name}
-            onChange={(e) => updateData({ ...data, name: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>Email:</strong>
-          <input
-            type="email"
-            name="email"
-            value={data.email}
-            onChange={(e) => updateData({ ...data, email: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>Phone Number:</strong>
-          <input
-            type="tel"
-            name="phone"
-            value={data.phone}
-            onChange={(e) => updateData({ ...data, phone: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>Address:</strong>
-          <input
-            type="text"
-            name="address"
-            value={data.address}
-            onChange={(e) => updateData({ ...data, address: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>Linkedin:</strong>
-          <input
-            type="text"
-            name="linkedin"
-            value={data.linkedin}
-            onChange={(e) => updateData({ ...data, linkedin: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>GitHub:</strong>
-          <input
-            type="text"
-            name="github"
-            value={data.github}
-            onChange={(e) => updateData({ ...data, github: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>Personal Website:</strong>
-          <input
-            type="text"
-            name="website"
-            value={data.website}
-            onChange={(e) => updateData({ ...data, website: e.target.value })}
-          />
-        </label>
-      </div>
-    </section>
-  );
-}
-
-function Summary({ data, updateData }) {
+{
+  /*function Summary({ data, updateData }) {
   return (
     <section className="summary">
       <div className="summary__form form">
@@ -197,9 +136,18 @@ function Summary({ data, updateData }) {
 }
 
 function SkillsList() {
+  const [skillGroups, setSkillGroups] = useState([]);
+
+  function handleAddSkillGroup() {
+    const newSkillGroup = { name: "", skills: [] };
+    setSkillGroups((groups) => [...groups, newSkillGroup]);
+  }
+
   return (
     <section className="skills">
-      <button type="button">+ Add</button>
+      <button type="button" onClick={handleAddSkillGroup}>
+        + Add Skill Group
+      </button>
       <div className="skills__form form">
         <SkillGroup />
       </div>
@@ -215,7 +163,7 @@ function SkillGroup() {
         <input
           type="text"
           name="skill-group"
-          value=""
+          value={""}
           placeholder="Frameworks, languages, soft skills etc"
         />
       </label>
@@ -224,7 +172,7 @@ function SkillGroup() {
         <Skill />
         <Skill />
       </ul>
-      <button type="button">+ Add</button>
+      <button type="button">+ Add Skill</button>
     </div>
   );
 }
@@ -363,52 +311,7 @@ function Education() {
   );
 }
 
-function CVPreview() {
-  return (
-    <div className="cv-preview">
-      <PersonalInfoPreview />
-      <SummaryPreview />
-      <SkillsListPreview />
-      <ExperienceListPreview />
-      <ProjectsListPreview />
-      <EducationListPreview />
-    </div>
-  );
-}
 
-function PersonalInfoPreview() {
-  return (
-    <section className="personal-info-preview">
-      <h1>Anna-Isabella BROOKS</h1>
-      <ul className="personal-info-preview__contacts">
-        <li>
-          <img src="email.png" alt="email icon" width={15} height={15} />
-          annbrooks@gmail.com
-        </li>
-        <li>
-          <img src="telephone.png" alt="phone icon" width={15} height={15} />
-          +41999665478
-        </li>
-        <li>
-          <img src="location.png" alt="home icon" width={15} height={15} />
-          New York
-        </li>
-        <li>
-          <img src="linkedin.png" alt="linkedin icon" width={15} height={15} />
-          linkedin.com/in/annabrooks
-        </li>
-        <li>
-          <img src="github.png" alt="github icon" width={15} height={15} />
-          GitHub
-        </li>
-        <li>
-          <img src="web.png" alt="web icon" width={15} height={15} />
-          github.com/annabrooks
-        </li>
-      </ul>
-    </section>
-  );
-}
 
 function SummaryPreview() {
   return (
@@ -583,5 +486,7 @@ function EducationListPreview() {
       </ul>
     </section>
   );
+}*/
 }
+
 export default App;
