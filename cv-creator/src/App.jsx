@@ -3,6 +3,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FoldableSection from "./components/FoldableSection";
 import PersonalInfoForm from "./components/PersonalInfoForm";
+import PersonalInfoPreview from "./components/PersonalInfoPreview";
+import Summary from "./components/Summary";
+import SummaryPreview from "./components/SummaryPreview";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -15,23 +18,29 @@ function App() {
     website: "",
   });
 
+  const [summary, setSummary] = useState("");
+
   return (
     <div className="cv-container">
       <Header />
       <CVForm
         personalData={personalInfo}
         updatePersonalData={setPersonalInfo}
+        summaryData={summary}
+        updateSummaryData={setSummary}
       />
-      <CVPreview
-        personalData={personalInfo}
-        updatePersonalData={setPersonalInfo}
-      />
+      <CVPreview personalData={personalInfo} summaryData={summary} />
       <Footer />
     </div>
   );
 }
 
-function CVForm({ personalData, updatePersonalData }) {
+function CVForm({
+  personalData,
+  updatePersonalData,
+  summaryData,
+  updateSummaryData,
+}) {
   function handleClearPersonal() {
     updatePersonalData({
       name: "",
@@ -44,6 +53,10 @@ function CVForm({ personalData, updatePersonalData }) {
     });
   }
 
+  function handleClearSummary() {
+    updateSummaryData("");
+  }
+
   return (
     <div className="cv-form">
       <FoldableSection
@@ -51,9 +64,10 @@ function CVForm({ personalData, updatePersonalData }) {
         handleClear={handleClearPersonal}>
         <PersonalInfoForm data={personalData} updateData={updatePersonalData} />
       </FoldableSection>
-      {/*<FoldableSection title="Summary" handleClear={handleClearSummary}>
-        <Summary data={summary} updateData={setSummary} />
+      <FoldableSection title="Summary" handleClear={handleClearSummary}>
+        <Summary data={summaryData} updateData={updateSummaryData} />
       </FoldableSection>
+      {/*
       <FoldableSection title="Skills">
         <SkillsList />
       </FoldableSection>
@@ -70,11 +84,12 @@ function CVForm({ personalData, updatePersonalData }) {
   );
 }
 
-function CVPreview({ personalData }) {
+function CVPreview({ personalData, summaryData }) {
   return (
     <div className="cv-preview">
       <PersonalInfoPreview data={personalData} />
-      {/*<SummaryPreview />
+      <SummaryPreview data={summaryData} />
+      {/*
       <SkillsListPreview />
       <ExperienceListPreview />
       <ProjectsListPreview />
@@ -83,58 +98,8 @@ function CVPreview({ personalData }) {
   );
 }
 
-function PersonalInfoPreview({ data }) {
-  return (
-    <section className="personal-info-preview">
-      <h1>{data.name}</h1>
-      <ul className="personal-info-preview__contacts">
-        <li>
-          <img src="email.png" alt="email icon" width={15} height={15} />
-          {data.email}
-        </li>
-        <li>
-          <img src="telephone.png" alt="phone icon" width={15} height={15} />
-          {data.phone}
-        </li>
-        <li>
-          <img src="location.png" alt="home icon" width={15} height={15} />
-          {data.address}
-        </li>
-        <li>
-          <img src="linkedin.png" alt="linkedin icon" width={15} height={15} />
-          {data.linkedin}
-        </li>
-        <li>
-          <img src="github.png" alt="github icon" width={15} height={15} />
-          {data.github}
-        </li>
-        <li>
-          <img src="web.png" alt="web icon" width={15} height={15} />
-          {data.website}
-        </li>
-      </ul>
-    </section>
-  );
-}
-
 {
-  /*function Summary({ data, updateData }) {
-  return (
-    <section className="summary">
-      <div className="summary__form form">
-        <label>
-          <textarea
-            name="summary"
-            rows={5}
-            value={data}
-            onChange={(e) => updateData(e.target.value)}
-          />
-        </label>
-      </div>
-    </section>
-  );
-}
-
+  /*
 function SkillsList() {
   const [skillGroups, setSkillGroups] = useState([]);
 
@@ -313,18 +278,6 @@ function Education() {
 
 
 
-function SummaryPreview() {
-  return (
-    <section className="summary-preview">
-      <p>
-        Self-taught Software Developer with more than 5 years of experience.
-        Skilled in React, Tailwind and Node.js. Created more 50+
-        fully-functional web applications. Specialized in Responsive and
-        Accessible Web Design and Agile work environment.
-      </p>
-    </section>
-  );
-}
 
 function SkillsListPreview() {
   return (
