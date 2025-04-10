@@ -24,7 +24,7 @@ function CVForm() {
     website: "",
   });
 
-  function handleClear() {
+  function handleClearPersonal() {
     setPersonalInfo({
       name: "",
       email: "",
@@ -35,17 +35,22 @@ function CVForm() {
       website: "",
     });
   }
+
+  const [summary, setSummary] = useState("");
+
+  function handleClearSummary() {
+    setSummary("");
+  }
+
   return (
     <div className="cv-form">
       <FoldableSection
         title="Personal Information"
-        handleClear={handleClear}>
-        <PersonalInfoForm 
-        personalInfo={personalInfo}
-        setPersonalInfo={setPersonalInfo}/>
+        handleClear={handleClearPersonal}>
+        <PersonalInfoForm data={personalInfo} updateData={setPersonalInfo} />
       </FoldableSection>
-      <FoldableSection title="Summary">
-        <Summary />
+      <FoldableSection title="Summary" handleClear={handleClearSummary}>
+        <Summary data={summary} updateData={setSummary} />
       </FoldableSection>
       <FoldableSection title="Skills">
         <SkillsList />
@@ -63,7 +68,7 @@ function CVForm() {
   );
 }
 
-function FoldableSection({ title, children, handleClear}) {
+function FoldableSection({ title, children, handleClear }) {
   const [isOpen, setIsOpen] = useState(true);
 
   function handleOpen() {
@@ -76,8 +81,7 @@ function FoldableSection({ title, children, handleClear}) {
         className="foldable-section__header header"
         role="button"
         aria-expanded={isOpen}
-        tabIndex={0}
-      >
+        tabIndex={0}>
         <img
           src={isOpen ? "/down-arrow.png" : "/chevron.png"}
           alt="toggle"
@@ -103,7 +107,7 @@ function FoldableSection({ title, children, handleClear}) {
   );
 }
 
-function PersonalInfoForm({personalInfo, setPersonalInfo}) {
+function PersonalInfoForm({ data, updateData }) {
   return (
     <section className="personal-info">
       <div className="personal-info__form form">
@@ -112,10 +116,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="text"
             name="name"
-            value={personalInfo.name}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, name: e.target.value })
-            }
+            value={data.name}
+            onChange={(e) => updateData({ ...data, name: e.target.value })}
           />
         </label>
         <label>
@@ -123,10 +125,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="email"
             name="email"
-            value={personalInfo.email}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, email: e.target.value })
-            }
+            value={data.email}
+            onChange={(e) => updateData({ ...data, email: e.target.value })}
           />
         </label>
         <label>
@@ -134,10 +134,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="tel"
             name="phone"
-            value={personalInfo.phone}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, phone: e.target.value })
-            }
+            value={data.phone}
+            onChange={(e) => updateData({ ...data, phone: e.target.value })}
           />
         </label>
         <label>
@@ -145,10 +143,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="text"
             name="address"
-            value={personalInfo.address}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, address: e.target.value })
-            }
+            value={data.address}
+            onChange={(e) => updateData({ ...data, address: e.target.value })}
           />
         </label>
         <label>
@@ -156,10 +152,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="text"
             name="linkedin"
-            value={personalInfo.linkedin}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, linkedin: e.target.value })
-            }
+            value={data.linkedin}
+            onChange={(e) => updateData({ ...data, linkedin: e.target.value })}
           />
         </label>
         <label>
@@ -167,10 +161,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="text"
             name="github"
-            value={personalInfo.github}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, github: e.target.value })
-            }
+            value={data.github}
+            onChange={(e) => updateData({ ...data, github: e.target.value })}
           />
         </label>
         <label>
@@ -178,10 +170,8 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
           <input
             type="text"
             name="website"
-            value={personalInfo.website}
-            onChange={(e) =>
-              setPersonalInfo({ ...personalInfo, website: e.target.value })
-            }
+            value={data.website}
+            onChange={(e) => updateData({ ...data, website: e.target.value })}
           />
         </label>
       </div>
@@ -189,12 +179,17 @@ function PersonalInfoForm({personalInfo, setPersonalInfo}) {
   );
 }
 
-function Summary() {
+function Summary({ data, updateData }) {
   return (
     <section className="summary">
       <div className="summary__form form">
         <label>
-          <textarea name="summary" value="" rows={5} />
+          <textarea
+            name="summary"
+            rows={5}
+            value={data}
+            onChange={(e) => updateData(e.target.value)}
+          />
         </label>
       </div>
     </section>
