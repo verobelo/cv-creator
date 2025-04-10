@@ -5,6 +5,7 @@ export default function Summary({ data, updateData }) {
         <label>
           <textarea
             name="summary"
+            placeholder="Write a short summary presenting yourself, your best skills, your goals etc"
             rows={5}
             value={data}
             onChange={(e) => updateData(e.target.value)}
