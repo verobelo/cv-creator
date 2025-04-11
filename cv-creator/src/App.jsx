@@ -17,8 +17,18 @@ function App() {
     github: "",
     website: "",
   });
-
   const [summary, setSummary] = useState("");
+  const [skillsGroups, setskillsGroups] = useState([]);
+
+  function handleAddSkillsGroup() {
+    const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
+    setskillsGroups((group) => [...group, newGroup]);
+  }
+
+  function handleRemoveSkillsGroup(groupId) {
+    const updatedGroups = skillsGroups.filter((group) => group.id !== groupId);
+    setskillsGroups(updatedGroups);
+  }
 
   return (
     <div className="cv-container">
@@ -28,8 +38,15 @@ function App() {
         updatePersonalData={setPersonalInfo}
         summaryData={summary}
         updateSummaryData={setSummary}
+        skillsGroupsData={skillsGroups}
+        onAddGroup={handleAddSkillsGroup}
+        onRemoveGroup={handleRemoveSkillsGroup}
       />
-      <CVPreview personalData={personalInfo} summaryData={summary} />
+      <CVPreview
+        personalData={personalInfo}
+        summaryData={summary}
+        skillsGroupsData={skillsGroups}
+      />
       <Footer />
     </div>
   );
@@ -40,6 +57,10 @@ function CVForm({
   updatePersonalData,
   summaryData,
   updateSummaryData,
+  skillsGroupsData,
+  updateSkillsGroupsData,
+  onAddGroup,
+  onRemoveGroup,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
@@ -57,6 +78,10 @@ function CVForm({
     updateSummaryData("");
   }
 
+  function handleClearSkillList() {
+    updateSkillsGroupsData([]);
+  }
+
   return (
     <div className="cv-form">
       <FoldableSection
@@ -67,10 +92,15 @@ function CVForm({
       <FoldableSection title="Summary" handleClear={handleClearSummary}>
         <Summary data={summaryData} updateData={updateSummaryData} />
       </FoldableSection>
-      {/*
-      <FoldableSection title="Skills">
-        <SkillsList />
+      <FoldableSection title="Skills" handleClear={handleClearSkillList}>
+        <SkillsList
+          data={skillsGroupsData}
+          updateData={updateSkillsGroupsData}
+          onAddGroup={onAddGroup}
+          onRemoveGroup={onRemoveGroup}
+        />
       </FoldableSection>
+      {/*      
       <FoldableSection title="Experience">
         <ExperienceList />
       </FoldableSection>
@@ -84,13 +114,61 @@ function CVForm({
   );
 }
 
-function CVPreview({ personalData, summaryData }) {
+function SkillsList({ data, onAddGroup, onRemoveGroup }) {
+  return (
+    <section className="skills">
+      <button type="button" onClick={onAddGroup}>
+        + Add Skill Group
+      </button>
+      <ul className="skills__form form">
+        {data.map((group) => (
+          <li key={group.id} className="skill__group">
+            <SkillsGroup
+              id={group.id}
+              name={group.name}
+              skills={group.skills}
+              handleRemove={onRemoveGroup}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function SkillsGroup({ id, name, skills, handleRemove }) {
+  const [skillsGroupName, setSkillsGroupsName] = useState(name);
+  return (
+    <>
+      <label>
+        <strong>Skill Group: </strong>
+        <input
+          type="text"
+          name="skill-group"
+          value={skillsGroupName}
+          onChange={(e) => setSkillsGroupsName(e.target.value)}
+          placeholder="Frameworks, languages, soft skills etc"
+        />
+      </label>
+      <button aria-label="remove skill group" onClick={() => handleRemove(id)}>
+        x
+      </button>
+      <ul>
+        {/*<Skill />
+        <Skill />*/}
+      </ul>
+      <button type="button">+ Add Skill</button>
+    </>
+  );
+}
+
+function CVPreview({ personalData, summaryData, skillsGroupsData }) {
   return (
     <div className="cv-preview">
       <PersonalInfoPreview data={personalData} />
       <SummaryPreview data={summaryData} />
-      {/*
-      <SkillsListPreview />
+      <SkillsListPreview data={skillsGroupsData} />
+      {/*      
       <ExperienceListPreview />
       <ProjectsListPreview />
       <EducationListPreview />*/}
@@ -98,49 +176,28 @@ function CVPreview({ personalData, summaryData }) {
   );
 }
 
-{
-  /*
-function SkillsList() {
-  const [skillGroups, setSkillGroups] = useState([]);
-
-  function handleAddSkillGroup() {
-    const newSkillGroup = { name: "", skills: [] };
-    setSkillGroups((groups) => [...groups, newSkillGroup]);
-  }
-
+function SkillsListPreview({ data }) {
+  console.log(data);
   return (
-    <section className="skills">
-      <button type="button" onClick={handleAddSkillGroup}>
-        + Add Skill Group
-      </button>
-      <div className="skills__form form">
-        <SkillGroup />
-      </div>
+    <section className="skills-preview">
+      <h2>Skills</h2>
+      <ul className="skills-preview__group">
+        {data.map((group) => (
+          <>
+            <h3>{group.name}</h3>
+            <ul>
+              <li>React</li>
+            </ul>
+          </>
+        ))}
+      </ul>
     </section>
   );
 }
 
-function SkillGroup() {
-  return (
-    <div className="skill__group">
-      <label>
-        <strong>Skill Group: </strong>
-        <input
-          type="text"
-          name="skill-group"
-          value={""}
-          placeholder="Frameworks, languages, soft skills etc"
-        />
-      </label>
+{
+  /*
 
-      <ul>
-        <Skill />
-        <Skill />
-      </ul>
-      <button type="button">+ Add Skill</button>
-    </div>
-  );
-}
 
 function Skill() {
   return (
@@ -273,33 +330,6 @@ function Education() {
         <input type="month" name="completion-date" value="" />
       </label>
     </div>
-  );
-}
-
-
-
-
-function SkillsListPreview() {
-  return (
-    <section className="skills-preview">
-      <h2>Skills</h2>
-      <div className="skills-preview__group">
-        <h3>Frameworks: </h3>
-        <ul>
-          <li>React</li>
-          <li>Node.js</li>
-          <li>Express</li>
-        </ul>
-      </div>
-      <div className="skills-preview__group">
-        <h3>Languages: </h3>
-        <ul>
-          <li>JavaScript</li>
-          <li>HTML</li>
-          <li>CSS</li>
-        </ul>
-      </div>
-    </section>
   );
 }
 
