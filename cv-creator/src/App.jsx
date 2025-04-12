@@ -39,6 +39,7 @@ function App() {
         summaryData={summary}
         updateSummaryData={setSummary}
         skillsGroupsData={skillsGroups}
+        updateSkillsGroupsData={setskillsGroups}
         onAddGroup={handleAddSkillsGroup}
         onRemoveGroup={handleRemoveSkillsGroup}
       />
@@ -114,7 +115,7 @@ function CVForm({
   );
 }
 
-function SkillsList({ data, onAddGroup, onRemoveGroup }) {
+function SkillsList({ data, updateData, onAddGroup, onRemoveGroup }) {
   return (
     <section className="skills">
       <button type="button" onClick={onAddGroup}>
@@ -128,6 +129,7 @@ function SkillsList({ data, onAddGroup, onRemoveGroup }) {
               name={group.name}
               skills={group.skills}
               handleRemove={onRemoveGroup}
+              updateData={updateData}
             />
           </li>
         ))}
@@ -136,8 +138,54 @@ function SkillsList({ data, onAddGroup, onRemoveGroup }) {
   );
 }
 
-function SkillsGroup({ id, name, skills, handleRemove }) {
-  const [skillsGroupName, setSkillsGroupsName] = useState(name);
+function SkillsGroup({ id, name, skills, updateData, handleRemove }) {
+  function handleOnChangeGroupName(e) {
+    const newName = e.target.value;
+    updateData((prevGroups) =>
+      prevGroups.map((group) =>
+        group.id === id ? { ...group, name: newName } : group
+      )
+    );
+  }
+
+  function handleOnChangeSkillName(skillId, newName) {
+    updateData((prevGroups) =>
+      prevGroups.map((group) =>
+        group.id === id
+          ? {
+              ...group,
+              skills: group.skills.map((skill) =>
+                skill.id === skillId ? { ...skill, name: newName } : skill
+              ),
+            }
+          : group
+      )
+    );
+  }
+
+  function handleAddSkill() {
+    const newSkill = { name: "", id: crypto.randomUUID() };
+    updateData((prevGroups) =>
+      prevGroups.map((group) =>
+        group.id === id
+          ? { ...group, skills: [...group.skills, newSkill] }
+          : group
+      )
+    );
+  }
+
+  function handleRemoveSkill(skillId) {
+    updateData((prevGroups) =>
+      prevGroups.map((group) =>
+        group.id === id
+          ? {
+              ...group,
+              skills: group.skills.filter((skill) => skill.id !== skillId),
+            }
+          : group
+      )
+    );
+  }
   return (
     <>
       <label>
@@ -145,19 +193,49 @@ function SkillsGroup({ id, name, skills, handleRemove }) {
         <input
           type="text"
           name="skill-group"
-          value={skillsGroupName}
-          onChange={(e) => setSkillsGroupsName(e.target.value)}
+          value={name}
+          onChange={handleOnChangeGroupName}
           placeholder="Frameworks, languages, soft skills etc"
         />
       </label>
       <button aria-label="remove skill group" onClick={() => handleRemove(id)}>
         x
       </button>
-      <ul>
-        {/*<Skill />
-        <Skill />*/}
+
+      <ul className="skills__list">
+        {skills.map((skill) => (
+          <li key={skill.id}>
+            <Skill
+              id={skill.id}
+              name={skill.name}
+              onChange={handleOnChangeSkillName}
+              onRemove={handleRemoveSkill}
+            />
+          </li>
+        ))}
       </ul>
-      <button type="button">+ Add Skill</button>
+
+      <button type="button" onClick={handleAddSkill}>
+        + Add Skill
+      </button>
+    </>
+  );
+}
+
+function Skill({ name, id, onChange, onRemove }) {
+  return (
+    <>
+      <label className="skill">
+        <input
+          type="text"
+          name="skill"
+          value={name}
+          onChange={(e) => onChange(id, e.target.value)}
+        />
+      </label>
+      <button type="button" onClick={() => onRemove(id)}>
+        x
+      </button>
     </>
   );
 }
@@ -177,18 +255,19 @@ function CVPreview({ personalData, summaryData, skillsGroupsData }) {
 }
 
 function SkillsListPreview({ data }) {
-  console.log(data);
   return (
     <section className="skills-preview">
       <h2>Skills</h2>
       <ul className="skills-preview__group">
         {data.map((group) => (
-          <>
-            <h3>{group.name}</h3>
+          <li key={group.id}>
+            <h3>{group.name}: </h3>
             <ul>
-              <li>React</li>
+              {group.skills.map((skill) => (
+                <li key={skill.id}>{skill.name}</li>
+              ))}
             </ul>
-          </>
+          </li>
         ))}
       </ul>
     </section>
@@ -199,14 +278,6 @@ function SkillsListPreview({ data }) {
   /*
 
 
-function Skill() {
-  return (
-    <>
-      <li className="skill">React</li>
-      <button type="button">x</button>
-    </>
-  );
-}
 
 function ExperienceList() {
   return (
