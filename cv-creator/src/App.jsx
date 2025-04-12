@@ -6,6 +6,7 @@ import PersonalInfoForm from "./components/PersonalInfoForm";
 import PersonalInfoPreview from "./components/PersonalInfoPreview";
 import Summary from "./components/Summary";
 import SummaryPreview from "./components/SummaryPreview";
+import Skill from "./components/Skill";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -217,24 +218,6 @@ function SkillsGroup({ id, name, skills, updateData, handleRemove }) {
 
       <button type="button" onClick={handleAddSkill}>
         + Add Skill
-      </button>
-    </>
-  );
-}
-
-function Skill({ name, id, onChange, onRemove }) {
-  return (
-    <>
-      <label className="skill">
-        <input
-          type="text"
-          name="skill"
-          value={name}
-          onChange={(e) => onChange(id, e.target.value)}
-        />
-      </label>
-      <button type="button" onClick={() => onRemove(id)}>
-        x
       </button>
     </>
   );
