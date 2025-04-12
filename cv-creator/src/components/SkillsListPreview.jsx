@@ -1,4 +1,4 @@
-export function SkillsListPreview({ data }) {
+export default function SkillsListPreview({ data }) {
   return (
     <section className="skills-preview">
       <h2>Skills</h2>

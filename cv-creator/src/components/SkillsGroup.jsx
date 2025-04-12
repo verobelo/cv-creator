@@ -1,6 +1,12 @@
-import Skill from "./components/Skill";
+import Skill from "./Skill";
 
-export function SkillsGroup({ id, name, skills, updateData, handleRemove }) {
+export default function SkillsGroup({
+  id,
+  name,
+  skills,
+  updateData,
+  handleRemove,
+}) {
   function handleOnChangeGroupName(e) {
     const newName = e.target.value;
     updateData((prevGroups) =>
