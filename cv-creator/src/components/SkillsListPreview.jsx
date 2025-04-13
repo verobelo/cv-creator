@@ -7,8 +7,11 @@ export default function SkillsListPreview({ data }) {
           <li key={group.id}>
             <h3>{group.name}: </h3>
             <ul>
-              {group.skills.map((skill) => (
-                <li key={skill.id}>{skill.name}</li>
+              {group.skills.map((skill, index) => (
+                <li key={skill.id}>
+                  {skill.name}
+                  {index < group.skills.length - 1 && <span> | </span>}
+                </li>
               ))}
             </ul>
           </li>
