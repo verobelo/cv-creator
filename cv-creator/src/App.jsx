@@ -8,8 +8,10 @@ import Summary from "./components/Summary";
 import SummaryPreview from "./components/SummaryPreview";
 import SkillsList from "./components/SkillsList";
 import SkillsListPreview from "./components/SkillsListPreview";
-import ExperienceList from "./ExperienceList";
+import ExperienceList from "./components/ExperienceList";
 import ExperienceListPreview from "./components/ExperienceListPreview";
+import ProjectsList from "./ProjectsList";
+import ProjectsListPreview from "./ProjectsListPreview";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -24,6 +26,7 @@ function App() {
   const [summary, setSummary] = useState("");
   const [skillsGroups, setskillsGroups] = useState([]);
   const [experienceList, setExperienceList] = useState([]);
+  const [projectsList, setProjectsList] = useState([]);
 
   function handleAddSkillsGroup() {
     const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
@@ -48,6 +51,19 @@ function App() {
     setExperienceList((prevList) => [...prevList, newExperience]);
   }
 
+  function handleAddProject() {
+    const newProject = {
+      id: crypto.randomUUID(),
+      name: "",
+      technologies: "",
+      description: "",
+      code: "",
+      demo: "",
+    };
+
+    setProjectsList((prevList) => [...prevList, newProject]);
+  }
+
   return (
     <div className="cv-container">
       <Header />
@@ -63,12 +79,16 @@ function App() {
         experienceData={experienceList}
         updateExperienceData={setExperienceList}
         onAddExperience={handleAddExperience}
+        projectsData={projectsList}
+        updateProjectsData={setProjectsList}
+        onAddProject={handleAddProject}
       />
       <CVPreview
         personalData={personalInfo}
         summaryData={summary}
         skillsGroupsData={skillsGroups}
         experienceData={experienceList}
+        projectsData={projectsList}
       />
       <Footer />
     </div>
@@ -87,6 +107,9 @@ function CVForm({
   experienceData,
   updateExperienceData,
   onAddExperience,
+  projectsData,
+  updateProjectsData,
+  onAddProject,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
@@ -112,6 +135,10 @@ function CVForm({
     updateExperienceData([]);
   }
 
+  function handleClearProjectsList() {
+    updateProjectsData([]);
+  }
+
   return (
     <div className="cv-form">
       <FoldableSection
@@ -134,15 +161,19 @@ function CVForm({
         title="Experience"
         handleClear={handleClearExperienceList}>
         <ExperienceList
-          onAddExperience={onAddExperience}
           data={experienceData}
           updateData={updateExperienceData}
+          onAddExperience={onAddExperience}
+        />
+      </FoldableSection>
+      <FoldableSection title="Projects" handleClear={handleClearProjectsList}>
+        <ProjectsList
+          data={projectsData}
+          updateData={updateProjectsData}
+          onAddProject={onAddProject}
         />
       </FoldableSection>
       {/*     
-      <FoldableSection title="Projects">
-        <ProjectsList />
-      </FoldableSection>
       <FoldableSection title="Education">
         <EducationList />
       </FoldableSection>*/}
@@ -155,6 +186,7 @@ function CVPreview({
   summaryData,
   skillsGroupsData,
   experienceData,
+  projectsData,
 }) {
   return (
     <div className="cv-preview">
@@ -162,8 +194,9 @@ function CVPreview({
       <SummaryPreview data={summaryData} />
       <SkillsListPreview data={skillsGroupsData} />
       <ExperienceListPreview data={experienceData} />
-      {/*   
-      <ProjectsListPreview />
+      <ProjectsListPreview data={projectsData} />
+      {/*    
+          
       <EducationListPreview />*/}
     </div>
   );
@@ -171,53 +204,7 @@ function CVPreview({
 
 {
   /*
-function ProjectsList() {
-  return (
-    <section className="projects">
-      <div className="projects__form">
-        <button type="button">+ Add</button>
-        <Project />
-      </div>
-    </section>
-  );
-}
 
-function Project() {
-  return (
-    <div className="project form">
-      <label>
-        <strong>Project Name:</strong>
-        <input type="text" name="project-name" value="" />
-      </label>
-      <label>
-        <strong>Technologies:</strong>
-        <input type="text" name="technology" value="" />
-      </label>
-      <label>
-        <strong>Description:</strong>
-        <textarea name="description" value="" rows={5} />
-      </label>
-      <label>
-        <strong>Code:</strong>
-        <input
-          type="text"
-          name="code"
-          value=""
-          placeholder="Github repository"
-        />
-      </label>
-      <label>
-        <strong>Demo:</strong>
-        <input
-          type="text"
-          name="demo"
-          value=""
-          placeholder="Link to your website"
-        />
-      </label>
-    </div>
-  );
-}
 
 function EducationList() {
   return (
@@ -254,54 +241,6 @@ function Education() {
   );
 }
 
-
-
-function ProjectsListPreview() {
-  return (
-    <section className="projects-preview">
-      <h2>Projects</h2>
-      <ol className="projects-preview__list">
-        <li className="project-preview__item">
-          <h3>CV Creator (React, CSS)</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-          <div className="project-preview__links">
-            <a
-              href="https://cvcreator.com"
-              target="_blank"
-              rel="noopener noreferrer">
-              Demo
-            </a>
-            <a
-              href="https://github.com/annbrooks/cvcreator.io"
-              target="_blank"
-              rel="noopener noreferrer">
-              Code
-            </a>
-          </div>
-        </li>
-
-        <li className="project-preview__item">
-          <h3>Portfolio Website (HTML, CSS, JS)</h3>
-          <p>A clean and responsive portfolio to showcase my projects...</p>
-          <div className="project-preview__links">
-            <a
-              href="https://anabrooks.dev"
-              target="_blank"
-              rel="noopener noreferrer">
-              Demo
-            </a>
-            <a
-              href="https://github.com/annbrooks/portfolio"
-              target="_blank"
-              rel="noopener noreferrer">
-              Code
-            </a>
-          </div>
-        </li>
-      </ol>
-    </section>
-  );
-}
 
 function EducationListPreview() {
   return (
