@@ -8,6 +8,8 @@ import Summary from "./components/Summary";
 import SummaryPreview from "./components/SummaryPreview";
 import SkillsList from "./components/SkillsList";
 import SkillsListPreview from "./components/SkillsListPreview";
+import ExperienceList from "./ExperienceList";
+import ExperienceListPreview from "./components/ExperienceListPreview";
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState({
@@ -21,6 +23,7 @@ function App() {
   });
   const [summary, setSummary] = useState("");
   const [skillsGroups, setskillsGroups] = useState([]);
+  const [experienceList, setExperienceList] = useState([]);
 
   function handleAddSkillsGroup() {
     const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
@@ -30,6 +33,19 @@ function App() {
   function handleRemoveSkillsGroup(groupId) {
     const updatedGroups = skillsGroups.filter((group) => group.id !== groupId);
     setskillsGroups(updatedGroups);
+  }
+
+  function handleAddExperience() {
+    const newExperience = {
+      id: crypto.randomUUID(),
+      position: "",
+      company: "",
+      address: "",
+      startDate: "",
+      endDate: "",
+      description: "",
+    };
+    setExperienceList((prevList) => [...prevList, newExperience]);
   }
 
   return (
@@ -44,11 +60,15 @@ function App() {
         updateSkillsGroupsData={setskillsGroups}
         onAddGroup={handleAddSkillsGroup}
         onRemoveGroup={handleRemoveSkillsGroup}
+        experienceData={experienceList}
+        updateExperienceData={setExperienceList}
+        onAddExperience={handleAddExperience}
       />
       <CVPreview
         personalData={personalInfo}
         summaryData={summary}
         skillsGroupsData={skillsGroups}
+        experienceData={experienceList}
       />
       <Footer />
     </div>
@@ -64,6 +84,9 @@ function CVForm({
   updateSkillsGroupsData,
   onAddGroup,
   onRemoveGroup,
+  experienceData,
+  updateExperienceData,
+  onAddExperience,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
@@ -85,6 +108,10 @@ function CVForm({
     updateSkillsGroupsData([]);
   }
 
+  function handleClearExperienceList() {
+    updateExperienceData([]);
+  }
+
   return (
     <div className="cv-form">
       <FoldableSection
@@ -103,10 +130,16 @@ function CVForm({
           onRemoveGroup={onRemoveGroup}
         />
       </FoldableSection>
-      {/*      
-      <FoldableSection title="Experience">
-        <ExperienceList />
+      <FoldableSection
+        title="Experience"
+        handleClear={handleClearExperienceList}>
+        <ExperienceList
+          onAddExperience={onAddExperience}
+          data={experienceData}
+          updateData={updateExperienceData}
+        />
       </FoldableSection>
+      {/*     
       <FoldableSection title="Projects">
         <ProjectsList />
       </FoldableSection>
@@ -117,14 +150,19 @@ function CVForm({
   );
 }
 
-function CVPreview({ personalData, summaryData, skillsGroupsData }) {
+function CVPreview({
+  personalData,
+  summaryData,
+  skillsGroupsData,
+  experienceData,
+}) {
   return (
     <div className="cv-preview">
       <PersonalInfoPreview data={personalData} />
       <SummaryPreview data={summaryData} />
       <SkillsListPreview data={skillsGroupsData} />
-      {/*      
-      <ExperienceListPreview />
+      <ExperienceListPreview data={experienceData} />
+      {/*   
       <ProjectsListPreview />
       <EducationListPreview />*/}
     </div>
@@ -133,51 +171,6 @@ function CVPreview({ personalData, summaryData, skillsGroupsData }) {
 
 {
   /*
-
-
-
-function ExperienceList() {
-  return (
-    <section className="experience">
-      <div className="experience__form">
-        <button type="button">+ Add</button>
-        <Experience />
-      </div>
-    </section>
-  );
-}
-
-function Experience() {
-  return (
-    <div className="experience__item form">
-      <label>
-        <strong>Position: </strong>
-        <input type="text" name="position" value="" />
-      </label>
-      <label>
-        <strong>Company Name: </strong>
-        <input type="text" name="company-name" value="" />
-      </label>
-      <label>
-        <strong>Company Address: </strong>
-        <input type="text" name="company-address" value="" />
-      </label>
-      <label>
-        <strong>Start Date: </strong>
-        <input type="month" name="start-date" value="" />
-      </label>
-      <label>
-        <strong>End Date: </strong>
-        <input type="month" name="end-date" value="" />
-      </label>
-      <label>
-        <strong>Description: </strong>
-        <textarea name="description" rows={5} />
-      </label>
-    </div>
-  );
-}
-
 function ProjectsList() {
   return (
     <section className="projects">
@@ -261,62 +254,7 @@ function Education() {
   );
 }
 
-function ExperienceListPreview() {
-  return (
-    <section className="experience-preview">
-      <h2>Experience</h2>
-      <ul className="experience-preview__list">
-        <li className="experience-preview__item">
-          <div className="experience-preview__top">
-            <div className="experience-preview__top--left">
-              <h3>Freelance Frontend Developer</h3>
-              <p>Fiver</p>
-            </div>
-            <div className="experience-preview__top--right">
-              <p>
-                <span>Remote</span>
-                <span> | </span>
-                <span>05.2022</span>
-                <span> - </span>
-                <span>Current</span>
-              </p>
-            </div>
-          </div>
-          <div className="experience-preview__description">
-            <ul>
-              <li>Built responsive websites with React and Tailwind</li>
-              <li>Collaborated with clients on Agile projects</li>
-            </ul>
-          </div>
-        </li>
 
-        <li className="experience-preview__item">
-          <div className="experience-preview__top">
-            <div className="experience-preview__top--left">
-              <h3>Web Development Intern</h3>
-              <p>New Technologies</p>
-            </div>
-            <div className="experience-preview__top--right">
-              <p>
-                <span>New York</span>
-                <span> | </span>
-                <span>01.2021</span>
-                <span> - </span>
-                <span>06.2021</span>
-              </p>
-            </div>
-          </div>
-          <div className="experience-preview__description">
-            <ul>
-              <li>Learned full-stack fundamentals with a team</li>
-              <li>Contributed to a group project using Git and GitHub</li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </section>
-  );
-}
 
 function ProjectsListPreview() {
   return (
