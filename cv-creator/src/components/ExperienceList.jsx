@@ -1,4 +1,4 @@
-import Experience from "./App";
+import Experience from "./Experience";
 
 export default function ExperienceList({ data, updateData, onAddExperience }) {
   function handleChangeInputValue(experienceId, key, newValue) {
