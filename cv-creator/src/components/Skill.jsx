@@ -9,7 +9,10 @@ export default function Skill({ name, id, onChange, onRemove }) {
           onChange={(e) => onChange(id, e.target.value)}
         />
       </label>
-      <button type="button" onClick={() => onRemove(id)}>
+      <button
+        type="button"
+        className="remove-button"
+        onClick={() => onRemove(id)}>
         x
       </button>
     </>
