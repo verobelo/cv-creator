@@ -48,6 +48,10 @@ footer {
   grid-area: footer;
 }
 
+.remove-button {
+  font-size: 1.2rem;
+}
+
 .cv-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -66,6 +70,10 @@ footer {
   flex-direction: column;
   gap: 1rem;
   width: 70%;
+}
+
+.form {
+  padding: 1rem;
 }
 
 .clear-button {
@@ -173,6 +181,18 @@ button:hover {
   margin-left: 0.5rem;
 }
 
+.experience__form ul li {
+  list-style: none;
+}
+
+.experience__item {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.experience__item button {
+  align-self: flex-end;
+}
+
 .experience__item label:not(:last-child) {
   display: flex;
   justify-content: space-between;
@@ -189,10 +209,6 @@ button:hover {
   flex-direction: column;
   gap: 0.5rem;
   border: 2px dotted black;
-}
-
-.form {
-  padding: 1rem;
 }
 
 .project {
