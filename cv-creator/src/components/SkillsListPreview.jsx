@@ -2,7 +2,7 @@ export default function SkillsListPreview({ data }) {
   return (
     <section className="skills-preview">
       <h2>Skills</h2>
-      <ul className="skills-preview__group">
+      <ul className="skills-preview__group flex-col">
         {data.map((group) => (
           <li key={group.id}>
             <h3>{group.name}: </h3>

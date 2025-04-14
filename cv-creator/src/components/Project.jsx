@@ -9,7 +9,7 @@ export default function Project({
   onRemove,
 }) {
   return (
-    <div className="project form">
+    <div className="project form flex-col dotted-border">
       <button
         type="button"
         className="remove-button"

@@ -7,7 +7,7 @@ export default function Education({
   onRemove,
 }) {
   return (
-    <div className="education__item form">
+    <div className="education__item form flex-col dotted-border">
       <button
         type="button"
         className="remove-button"

@@ -1,7 +1,7 @@
 export default function PersonalInfoForm({ data, updateData }) {
   return (
     <section className="personal-info">
-      <div className="personal-info__form form">
+      <div className="personal-info__form form flex-col">
         <label>
           <strong>Full Name:</strong>
           <input
