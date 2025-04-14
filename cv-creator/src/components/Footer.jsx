@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer>
+    <footer className="flex-center">
       <a
         href="https://www.flaticon.com/authors/th-studio"
         target="_blank"
