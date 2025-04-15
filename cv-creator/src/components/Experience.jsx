@@ -10,7 +10,7 @@ export default function Experience({
   onRemove,
 }) {
   return (
-    <div className="experience__item form flex-col dotted-border">
+    <div className="experience__item form dotted-border">
       <button
         type="button"
         className="remove-button"
