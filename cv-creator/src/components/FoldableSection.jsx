@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ClearButton from "./ClearButton";
 
 export default function FoldableSection({ title, children, handleClear }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,18 +22,7 @@ export default function FoldableSection({ title, children, handleClear }) {
           height={25}
         />
         <h1 onClick={handleOpen}>{title}</h1>
-        <button
-          type="button"
-          aria-label="Clear section"
-          className="clear-button"
-          onClick={handleClear}>
-          <img
-            src="/vacuum-cleaner.png"
-            alt="vacuum cleaner icon"
-            width={30}
-            height={30}
-          />
-        </button>
+        <ClearButton onClear={handleClear} />
       </div>
       <>{isOpen && children}</>
     </section>
