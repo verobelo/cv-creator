@@ -132,6 +132,10 @@ footer {
   margin-left: auto;
 }
 
+.clear-button svg:hover g {
+  fill: black;
+}
+
 .clear-button:hover {
   transform: scale(1.2);
   transition: all 0.2s ease-in-out;
