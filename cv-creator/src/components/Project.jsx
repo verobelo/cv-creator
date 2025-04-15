@@ -13,6 +13,7 @@ export default function Project({
       <button
         type="button"
         className="remove-button"
+        aria-label="remove project"
         onClick={() => onRemove(id)}>
         x
       </button>

@@ -11,6 +11,7 @@ export default function Education({
       <button
         type="button"
         className="remove-button"
+        aria-label="remove education"
         onClick={() => onRemove(id)}>
         x
       </button>

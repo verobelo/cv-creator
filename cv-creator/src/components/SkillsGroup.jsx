@@ -68,7 +68,6 @@ export default function SkillsGroup({
       </label>
       <button
         type="button"
-        className="remove-button"
         aria-label="remove skill group"
         onClick={() => handleRemove(id)}>
         x

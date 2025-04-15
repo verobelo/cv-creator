@@ -14,6 +14,7 @@ export default function Experience({
       <button
         type="button"
         className="remove-button"
+        aria-label="remove experience"
         onClick={() => onRemove(id)}>
         x
       </button>
