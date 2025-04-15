@@ -15,13 +15,14 @@ export default function ProjectsList({ data, updateData, onAddProject }) {
     updateData(updatedList);
   }
 
+  const isEmpty = data.length === 0;
   return (
     <section className="projects">
       <div className="projects__form">
         <button type="button" onClick={onAddProject}>
           + Add
         </button>
-        <ul>
+        <ul className={!isEmpty ? "form" : ""}>
           {data.map((project) => (
             <li key={project.id}>
               <Project

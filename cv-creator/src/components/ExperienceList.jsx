@@ -16,14 +16,14 @@ export default function ExperienceList({ data, updateData, onAddExperience }) {
       prevList.filter((experience) => experience.id !== experienceId);
     updateData(updatedList);
   }
-
+  const isEmpty = data.length === 0;
   return (
     <section className="experience">
       <div className="experience__form">
         <button type="button" onClick={onAddExperience}>
           + Add
         </button>
-        <ul>
+        <ul className={!isEmpty ? "form" : ""}>
           {data.map((experience) => (
             <li key={experience.id}>
               <Experience

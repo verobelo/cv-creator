@@ -17,13 +17,15 @@ export default function EducationList({ data, updateData, onAddEducation }) {
     updateData(updatedList);
   }
 
+  const isEmpty = data.length === 0;
+
   return (
     <section className="education">
       <div className="education__form">
         <button type="button" onClick={onAddEducation}>
           + Add
         </button>
-        <ul>
+        <ul className={!isEmpty ? "form" : ""}>
           {data.map((education) => (
             <li key={education.id}>
               <Education

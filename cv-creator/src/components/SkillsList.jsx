@@ -6,12 +6,13 @@ export default function SkillsList({
   onAddGroup,
   onRemoveGroup,
 }) {
+  const isEmpty = data.length === 0;
   return (
     <section className="skills">
       <button type="button" onClick={onAddGroup}>
         + Add Skill Group
       </button>
-      <ul className="skills__form form">
+      <ul className={`skills__form ${!isEmpty ? "form" : ""}`}>
         {data.map((group) => (
           <li key={group.id} className="skill__group">
             <SkillsGroup
