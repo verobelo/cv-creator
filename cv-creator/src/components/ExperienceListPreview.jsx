@@ -10,9 +10,9 @@ export default function ExperienceListPreview({ data }) {
       <h2>Experience</h2>
       <ul className="experience-preview__list">
         {data.map((experience) => (
-          <li className="experience-preview__item">
+          <li className="experience-preview__item" key={experience.id}>
             <div className="experience-preview__top">
-              <div className="experience-preview__top--left">
+              <div className="experience-preview__top--left flex-center">
                 <h3>{experience.position}</h3>
                 <p>{experience.company}</p>
               </div>
