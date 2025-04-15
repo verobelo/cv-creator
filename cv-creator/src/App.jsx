@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import html2pdf from "html2pdf.js";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FoldableSection from "./components/FoldableSection";
@@ -10,10 +11,29 @@ import SkillsList from "./components/SkillsList";
 import SkillsListPreview from "./components/SkillsListPreview";
 import ExperienceList from "./components/ExperienceList";
 import ExperienceListPreview from "./components/ExperienceListPreview";
-import ProjectsList from "./ProjectsList";
-import ProjectsListPreview from "./ProjectsListPreview";
+import ProjectsList from "./components/ProjectsList";
+import ProjectsListPreview from "./components/ProjectsListPreview";
+import EducationList from "./components/EducationList";
+import EducationListPreview from "./components/EducationListPreview";
 
 function App() {
+  const cvRef = useRef();
+
+  function handleDownloadPDF() {
+    if (!cvRef.current) return;
+
+    html2pdf()
+      .set({
+        margin: 0.5,
+        filename: "CV.pdf",
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      })
+      .from(cvRef.current)
+      .save();
+  }
+
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
     email: "",
@@ -27,6 +47,7 @@ function App() {
   const [skillsGroups, setskillsGroups] = useState([]);
   const [experienceList, setExperienceList] = useState([]);
   const [projectsList, setProjectsList] = useState([]);
+  const [educationList, setEducationList] = useState([]);
 
   function handleAddSkillsGroup() {
     const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
@@ -64,6 +85,16 @@ function App() {
     setProjectsList((prevList) => [...prevList, newProject]);
   }
 
+  function handleAddEducation() {
+    const newEducation = {
+      id: crypto.randomUUID(),
+      degree: "",
+      institution: "",
+      completionDate: "",
+    };
+    setEducationList((prevList) => [...prevList, newEducation]);
+  }
+
   return (
     <div className="cv-container">
       <Header />
@@ -82,14 +113,21 @@ function App() {
         projectsData={projectsList}
         updateProjectsData={setProjectsList}
         onAddProject={handleAddProject}
+        educationData={educationList}
+        updateEducationData={setEducationList}
+        onAddEducation={handleAddEducation}
+        handleDownload={handleDownloadPDF}
       />
-      <CVPreview
-        personalData={personalInfo}
-        summaryData={summary}
-        skillsGroupsData={skillsGroups}
-        experienceData={experienceList}
-        projectsData={projectsList}
-      />
+      <div ref={cvRef}>
+        <CVPreview
+          personalData={personalInfo}
+          summaryData={summary}
+          skillsGroupsData={skillsGroups}
+          experienceData={experienceList}
+          projectsData={projectsList}
+          educationData={educationList}
+        />
+      </div>
       <Footer />
     </div>
   );
@@ -110,6 +148,10 @@ function CVForm({
   projectsData,
   updateProjectsData,
   onAddProject,
+  educationData,
+  updateEducationData,
+  onAddEducation,
+  handleDownload,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
@@ -139,8 +181,24 @@ function CVForm({
     updateProjectsData([]);
   }
 
+  function handleClearEducationList() {
+    updateEducationData([]);
+  }
+
   return (
     <div className="cv-form">
+      <button
+        type="button"
+        onClick={handleDownload}
+        className="download-button">
+        <img
+          src="download.png"
+          aria-label="download cv"
+          alt="download icon"
+          width={35}
+          height={35}
+        />
+      </button>
       <FoldableSection
         title="Personal Information"
         handleClear={handleClearPersonal}>
@@ -173,10 +231,13 @@ function CVForm({
           onAddProject={onAddProject}
         />
       </FoldableSection>
-      {/*     
-      <FoldableSection title="Education">
-        <EducationList />
-      </FoldableSection>*/}
+      <FoldableSection title="Education" handleClear={handleClearEducationList}>
+        <EducationList
+          data={educationData}
+          updateData={updateEducationData}
+          onAddEducation={onAddEducation}
+        />
+      </FoldableSection>
     </div>
   );
 }
@@ -187,6 +248,7 @@ function CVPreview({
   skillsGroupsData,
   experienceData,
   projectsData,
+  educationData,
 }) {
   return (
     <div className="cv-preview">
@@ -195,86 +257,9 @@ function CVPreview({
       <SkillsListPreview data={skillsGroupsData} />
       <ExperienceListPreview data={experienceData} />
       <ProjectsListPreview data={projectsData} />
-      {/*    
-          
-      <EducationListPreview />*/}
+      <EducationListPreview data={educationData} />
     </div>
   );
-}
-
-{
-  /*
-
-
-function EducationList() {
-  return (
-    <section className="education">
-      <div className="education__form">
-        <button type="button">+ Add</button>
-        <Education />
-      </div>
-    </section>
-  );
-}
-
-function Education() {
-  return (
-    <div className="education__item form">
-      <label>
-        <strong>Degree:</strong>
-        <input
-          type="text"
-          name="degree"
-          value=""
-          placeholder="Degree or Certification name"
-        />
-      </label>
-      <label>
-        <strong>Institution Name:</strong>
-        <input type="text" name="institution-name" value="" />
-      </label>
-      <label>
-        <strong>Completion Date:</strong>
-        <input type="month" name="completion-date" value="" />
-      </label>
-    </div>
-  );
-}
-
-
-function EducationListPreview() {
-  return (
-    <section className="education-preview">
-      <h2>Education & Certifications</h2>
-      <ul className="education-preview__list">
-        <li className="education-preview__item">
-          <div className="education-preview__item--left">
-            <h3>Bachelor Degree in Computer Science</h3>
-          </div>
-          <div className="education-preview__item--right">
-            <p>
-              <span>New York State University</span>
-              <span> | </span>
-              <span>06.2012</span>
-            </p>
-          </div>
-        </li>
-        <li className="education-preview__item">
-          <div className="education-preview__item--left">
-            <h3>Meta Software Developer Certification</h3>
-          </div>
-          <div className="education-preview__item--right">
-            <p>
-              <span>Coursera</span>
-              <span> | </span>
-              <span>04.2021</span>
-            </p>
-          </div>
-        </li>
-      </ul>
-    </section>
-  );
-}*/
 }
 
 export default App;
