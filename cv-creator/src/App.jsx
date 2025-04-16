@@ -95,6 +95,23 @@ function App() {
     setEducationList((prevList) => [...prevList, newEducation]);
   }
 
+  function handleClearAll() {
+    setPersonalInfo({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      linkedin: "",
+      github: "",
+      website: "",
+    });
+    setSummary("");
+    setskillsGroups([]);
+    setExperienceList([]);
+    setProjectsList([]);
+    setEducationList([]);
+  }
+
   return (
     <div className="cv-container">
       <Header />
@@ -117,6 +134,7 @@ function App() {
         updateEducationData={setEducationList}
         onAddEducation={handleAddEducation}
         handleDownload={handleDownloadPDF}
+        onClearAll={handleClearAll}
       />
       <div ref={cvRef}>
         <CVPreview
@@ -152,6 +170,7 @@ function CVForm({
   updateEducationData,
   onAddEducation,
   handleDownload,
+  onClearAll,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
@@ -187,18 +206,29 @@ function CVForm({
 
   return (
     <div className="cv-form">
-      <button
-        type="button"
-        onClick={handleDownload}
-        className="download-button">
-        <img
-          src="download.png"
-          aria-label="download cv"
-          alt="download icon"
-          width={35}
-          height={35}
-        />
-      </button>
+      <div className="buttons">
+        <button
+          type="button"
+          onClick={handleDownload}
+          className="download-button">
+          <img
+            src="download.png"
+            aria-label="download cv"
+            alt="download icon"
+            width={35}
+            height={35}
+          />
+        </button>
+        <button type="button" className="clear-all-button" onClick={onClearAll}>
+          <img
+            src="./vacuum-cleaner.png"
+            alt="vacuum cleaner icon"
+            aria-label="clear all sections"
+            width={35}
+            height={35}
+          />
+        </button>
+      </div>
       <FoldableSection
         title="Personal Information"
         handleClear={handleClearPersonal}>
