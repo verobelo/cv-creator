@@ -32,16 +32,7 @@ export default function PersonalInfoForm({ data, updateData }) {
             onChange={(e) => updateData({ ...data, phone: e.target.value })}
           />
         </label>
-        <label>
-          <strong>Address:</strong>
-          <input
-            type="text"
-            name="address"
-            placeholder="e.g. Div Street, New Html"
-            value={data.address}
-            onChange={(e) => updateData({ ...data, address: e.target.value })}
-          />
-        </label>
+
         <label>
           <strong>Linkedin:</strong>
           <input
@@ -53,23 +44,13 @@ export default function PersonalInfoForm({ data, updateData }) {
           />
         </label>
         <label>
-          <strong>GitHub:</strong>
+          <strong>GitHub or Portfolio:</strong>
           <input
             type="text"
             name="github"
             placeholder="e.g. github.io/javascripston"
             value={data.github}
             onChange={(e) => updateData({ ...data, github: e.target.value })}
-          />
-        </label>
-        <label>
-          <strong>Personal Website:</strong>
-          <input
-            type="text"
-            name="website"
-            placeholder="e.g. wowimadeawebsite.com"
-            value={data.website}
-            onChange={(e) => updateData({ ...data, website: e.target.value })}
           />
         </label>
       </div>
