@@ -2,6 +2,14 @@ export default function ProjectsListPreview({ data }) {
   return (
     <section className="projects-preview">
       <h2>Projects</h2>
+      <div
+        style={{
+          height: "5px",
+          width: "100%",
+          backgroundColor: "rgb(199, 198, 198)",
+          display: "block",
+          margin: "0.5rem 0",
+        }}></div>
       <ol className="projects-preview__list">
         {data.map((project) => (
           <li className="project-preview__item" key={project.id}>

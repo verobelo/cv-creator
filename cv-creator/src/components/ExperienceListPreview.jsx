@@ -8,6 +8,14 @@ export default function ExperienceListPreview({ data }) {
   return (
     <section className="experience-preview">
       <h2>Experience</h2>
+      <div
+        style={{
+          height: "5px",
+          width: "100%",
+          backgroundColor: "rgb(199, 198, 198)",
+          display: "block",
+          margin: "0.5rem 0",
+        }}></div>
       <ul className="experience-preview__list">
         {data.map((experience) => (
           <li className="experience-preview__item" key={experience.id}>
