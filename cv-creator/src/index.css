@@ -52,11 +52,6 @@ button:hover {
   font-weight: bold;
 }
 
-h2 {
-  border-bottom: 2px solid rgb(199, 198, 198);
-  margin-bottom: 0.5rem;
-}
-
 /* Utility classes */
 
 .form {
