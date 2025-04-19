@@ -4,11 +4,11 @@ export default function SkillsListPreview({ data }) {
       <h2>Skills</h2>
       <div
         style={{
-          height: "5px",
+          height: "2px",
           width: "100%",
           backgroundColor: "rgb(199, 198, 198)",
           display: "block",
-          margin: "0.5rem 0",
+          margin: "0.3rem 0",
         }}></div>
       <ul className="skills-preview__group flex-col">
         {data.map((group) => (
