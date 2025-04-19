@@ -1,11 +1,11 @@
 export default function PersonalInfoPreview({ data }) {
   return (
     <section className="personal-info-preview">
-      <h1>{data.name}</h1>
+      <h1 style={{ marginBottom: "0.5rem" }}>{data.name}</h1>
       <ul className="personal-info-preview__contacts">
         <li>
           <img src="email.png" alt="email icon" width={15} height={15} />
-          {data.email}
+          <span>{data.email}</span>
         </li>
         <li>
           <img src="telephone.png" alt="phone icon" width={15} height={15} />
