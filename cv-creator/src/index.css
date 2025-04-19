@@ -109,13 +109,15 @@ footer {
 }
 
 .print-button:hover,
-.clear-all-button:hover {
+.clear-all-button:hover,
+.language-toggle-button:hover {
   transform: scale(1.2);
   transition: all 0.2s ease-in-out;
 }
 
 .print-button:active,
-.clear-all-button:active {
+.clear-all-button:active,
+.language-toggle-button:active {
   transform: scale(0.95);
   filter: brightness(0.9);
 }
@@ -272,7 +274,7 @@ footer {
 
 .cv-preview h1 {
   font-weight: 400;
-  font-size: 32px;
+  font-size: 30px;
   text-align: center;
   letter-spacing: 2px;
 }
@@ -283,7 +285,8 @@ footer {
 
 .personal-info-preview__contacts {
   display: flex;
-  justify-content: space-evenly;
+  gap: 1.3rem;
+  font-size: 0.9rem;
   flex-wrap: wrap;
 }
 
@@ -374,4 +377,23 @@ footer {
   font-style: italic;
   margin-top: 0.5rem;
   text-align: center;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .cv-preview,
+  .cv-preview * {
+    visibility: visible;
+  }
+
+  .cv-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    page-break-after: always;
+    box-shadow: none;
+  }
 }
