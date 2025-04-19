@@ -1,9 +1,11 @@
-export default function PersonalInfoForm({ data, updateData }) {
+import { translations } from "../logic/translation";
+
+export default function PersonalInfoForm({ data, updateData, language }) {
   return (
     <section className="personal-info">
       <div className="personal-info__form form">
         <label>
-          <strong>Full Name:</strong>
+          <strong>{translations[language].fullName}:</strong>
           <input
             type="text"
             name="name"
@@ -13,7 +15,7 @@ export default function PersonalInfoForm({ data, updateData }) {
           />
         </label>
         <label>
-          <strong>Email:</strong>
+          <strong>{translations[language].email}:</strong>
           <input
             type="email"
             name="email"
@@ -23,7 +25,7 @@ export default function PersonalInfoForm({ data, updateData }) {
           />
         </label>
         <label>
-          <strong>Phone Number:</strong>
+          <strong>{translations[language].phone}:</strong>
           <input
             type="tel"
             name="phone"
@@ -34,7 +36,7 @@ export default function PersonalInfoForm({ data, updateData }) {
         </label>
 
         <label>
-          <strong>Linkedin:</strong>
+          <strong>{translations[language].linkedin}:</strong>
           <input
             type="text"
             name="linkedin"
@@ -44,7 +46,7 @@ export default function PersonalInfoForm({ data, updateData }) {
           />
         </label>
         <label>
-          <strong>GitHub or Portfolio:</strong>
+          <strong>{translations[language].github}:</strong>
           <input
             type="text"
             name="github"
