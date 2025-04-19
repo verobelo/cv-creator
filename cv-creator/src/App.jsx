@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "react";
-import html2pdf from "html2pdf.js";
+import { useState, useEffect } from "react";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FoldableSection from "./components/FoldableSection";
@@ -17,23 +17,6 @@ import EducationList from "./components/EducationList";
 import EducationListPreview from "./components/EducationListPreview";
 
 function App() {
-  const cvRef = useRef();
-
-  function handleDownloadPDF() {
-    if (!cvRef.current) return;
-
-    html2pdf()
-      .set({
-        margin: 0.5,
-        filename: "CV.pdf",
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-      })
-      .from(cvRef.current)
-      .save();
-  }
-
   const [personalInfo, setPersonalInfo] = useState(() => {
     const stored = localStorage.getItem("cvPersonalInfo");
     return stored
@@ -42,10 +25,8 @@ function App() {
           name: "",
           email: "",
           phone: "",
-          address: "",
           linkedin: "",
           github: "",
-          website: "",
         };
   });
 
@@ -161,6 +142,11 @@ function App() {
     setEducationList([]);
   }
 
+  function handlePrint() {
+    alert("Click on Settings to adjust your CV even more");
+    window.print();
+  }
+
   return (
     <div className="cv-container">
       <Header />
@@ -182,10 +168,13 @@ function App() {
         educationData={educationList}
         updateEducationData={setEducationList}
         onAddEducation={handleAddEducation}
-        handleDownload={handleDownloadPDF}
         onClearAll={handleClearAll}
+        onPrint={handlePrint}
       />
-      <div ref={cvRef}>
+      <div className="preview-container">
+        <p className="preview-note">
+          This preview fits one A4 page. Keep your entries concise!
+        </p>
         <CVPreview
           personalData={personalInfo}
           summaryData={summary}
@@ -218,18 +207,16 @@ function CVForm({
   educationData,
   updateEducationData,
   onAddEducation,
-  handleDownload,
   onClearAll,
+  onPrint,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
       name: "",
       email: "",
       phone: "",
-      address: "",
       linkedin: "",
       github: "",
-      website: "",
     });
   }
 
@@ -256,14 +243,11 @@ function CVForm({
   return (
     <div className="cv-form">
       <div className="buttons">
-        <button
-          type="button"
-          onClick={handleDownload}
-          className="download-button">
+        <button type="button" className="print-button" onClick={onPrint}>
           <img
-            src="download.png"
-            aria-label="download cv"
-            alt="download icon"
+            src="printer.png"
+            aria-label="print cv"
+            alt="printer icon"
             width={35}
             height={35}
           />
@@ -273,6 +257,15 @@ function CVForm({
             src="./vacuum-cleaner.png"
             alt="vacuum cleaner icon"
             aria-label="clear all sections"
+            width={35}
+            height={35}
+          />
+        </button>
+        <button type="button" className="language-toggle-button">
+          <img
+            src="./globe.png"
+            alt="globe icon"
+            aria-label="toggle languages"
             width={35}
             height={35}
           />
