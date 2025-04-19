@@ -1,11 +1,12 @@
-export default function Summary({ data, updateData }) {
+import { translations } from "../logic/translation";
+export default function Summary({ data, updateData, language }) {
   return (
     <section className="summary">
       <div className="summary__form form">
         <label>
           <textarea
             name="summary"
-            placeholder="Write a short summary presenting yourself, your best skills, your goals etc"
+            placeholder={translations[language].summaryPlaceholder}
             rows={5}
             value={data}
             onChange={(e) => updateData(e.target.value)}
