@@ -108,13 +108,13 @@ footer {
   align-self: flex-end;
 }
 
-.download-button:hover,
+.print-button:hover,
 .clear-all-button:hover {
   transform: scale(1.2);
   transition: all 0.2s ease-in-out;
 }
 
-.download-button:active,
+.print-button:active,
 .clear-all-button:active {
   transform: scale(0.95);
   filter: brightness(0.9);
@@ -265,14 +265,15 @@ footer {
   font-family: "eb_garamondregular", serif;
   width: 21cm;
   height: 29.7cm;
-  padding: 1.5cm 2cm;
+  padding: 1cm 1.5cm;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  line-height: 1.2;
 }
 
 .cv-preview h1 {
   font-weight: 400;
   font-size: 32px;
-  margin: auto 0;
+  text-align: center;
   letter-spacing: 2px;
 }
 
@@ -281,19 +282,20 @@ footer {
 }
 
 .personal-info-preview__contacts {
-  justify-self: end;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .personal-info-preview__contacts li {
   display: flex;
-  gap: 0.5rem;
   align-items: center;
+  gap: 0.2rem;
 }
 
 .personal-info-preview {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  column-gap: 2.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .skills-preview__group li {
@@ -330,7 +332,17 @@ footer {
 }
 
 .experience-preview__description ul li {
-  list-style: inside;
+  position: relative;
+  padding-left: 1.2em;
+}
+
+.experience-preview__description ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-size: 1em;
+  line-height: 1;
 }
 
 .projects-preview__list li {
@@ -354,4 +366,12 @@ footer {
 .education-preview__item--right {
   display: flex;
   gap: 0.5rem;
+}
+
+.preview-note {
+  font-size: 0.875rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 0.5rem;
+  text-align: center;
 }
