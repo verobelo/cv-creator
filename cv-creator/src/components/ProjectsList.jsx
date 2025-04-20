@@ -1,6 +1,12 @@
 import Project from "./Project";
+import { translations } from "../logic/translation";
 
-export default function ProjectsList({ data, updateData, onAddProject }) {
+export default function ProjectsList({
+  data,
+  updateData,
+  onAddProject,
+  language,
+}) {
   function handleChangeInputValue(projectId, key, newValue) {
     updateData((prevList) =>
       prevList.map((project) =>
@@ -20,7 +26,7 @@ export default function ProjectsList({ data, updateData, onAddProject }) {
     <section className="projects">
       <div className="projects__form">
         <button type="button" onClick={onAddProject}>
-          + Add
+          + {translations[language].add}
         </button>
         <ul className={!isEmpty ? "form" : ""}>
           {data.map((project) => (
@@ -34,6 +40,7 @@ export default function ProjectsList({ data, updateData, onAddProject }) {
                 demo={project.demo}
                 onChange={handleChangeInputValue}
                 onRemove={handleRemoveProject}
+                language={language}
               />
             </li>
           ))}

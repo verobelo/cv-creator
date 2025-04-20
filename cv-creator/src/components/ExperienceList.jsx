@@ -1,6 +1,12 @@
 import Experience from "./Experience";
+import { translations } from "../logic/translation";
 
-export default function ExperienceList({ data, updateData, onAddExperience }) {
+export default function ExperienceList({
+  data,
+  updateData,
+  onAddExperience,
+  language,
+}) {
   function handleChangeInputValue(experienceId, key, newValue) {
     updateData((prevList) =>
       prevList.map((experience) =>
@@ -21,7 +27,7 @@ export default function ExperienceList({ data, updateData, onAddExperience }) {
     <section className="experience">
       <div className="experience__form">
         <button type="button" onClick={onAddExperience}>
-          + Add
+          + {translations[language].add}
         </button>
         <ul className={!isEmpty ? "form" : ""}>
           {data.map((experience) => (
@@ -36,6 +42,7 @@ export default function ExperienceList({ data, updateData, onAddExperience }) {
                 description={experience.description}
                 onChange={handleChangeInputValue}
                 onRemove={handleRemoveExperience}
+                language={language}
               />
             </li>
           ))}

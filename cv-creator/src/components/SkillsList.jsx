@@ -1,16 +1,18 @@
 import SkillsGroup from "./SkillsGroup";
+import { translations } from "../logic/translation";
 
 export default function SkillsList({
   data,
   updateData,
   onAddGroup,
   onRemoveGroup,
+  language,
 }) {
   const isEmpty = data.length === 0;
   return (
     <section className="skills">
       <button type="button" onClick={onAddGroup}>
-        + Add Skill Group
+        + {translations[language].addSkillGroup}
       </button>
       <ul className={`skills__form ${!isEmpty ? "form" : ""}`}>
         {data.map((group) => (
@@ -21,6 +23,7 @@ export default function SkillsList({
               skills={group.skills}
               handleRemove={onRemoveGroup}
               updateData={updateData}
+              language={language}
             />
           </li>
         ))}

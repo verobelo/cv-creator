@@ -1,3 +1,5 @@
+import { translations } from "../logic/translation";
+
 export default function Project({
   id,
   name,
@@ -7,6 +9,7 @@ export default function Project({
   demo,
   onChange,
   onRemove,
+  language,
 }) {
   return (
     <div className="project form flex-col dotted-border">
@@ -18,7 +21,7 @@ export default function Project({
         x
       </button>
       <label>
-        <strong>Project Name:</strong>
+        <strong>{translations[language].projectName}:</strong>
         <input
           type="text"
           name="project-name"
@@ -27,7 +30,7 @@ export default function Project({
         />
       </label>
       <label>
-        <strong>Technologies:</strong>
+        <strong>{translations[language].technologies}:</strong>
         <input
           type="text"
           name="technology"
@@ -36,7 +39,7 @@ export default function Project({
         />
       </label>
       <label>
-        <strong>Description:</strong>
+        <strong>{translations[language].projectDescription}:</strong>
         <textarea
           name="description"
           value={description}
@@ -45,7 +48,7 @@ export default function Project({
         />
       </label>
       <label>
-        <strong>Code:</strong>
+        <strong>{translations[language].code}:</strong>
         <input
           type="text"
           name="code"
@@ -55,7 +58,7 @@ export default function Project({
         />
       </label>
       <label>
-        <strong>Demo:</strong>
+        <strong>{translations[language].demo}:</strong>
         <input
           type="text"
           name="demo"

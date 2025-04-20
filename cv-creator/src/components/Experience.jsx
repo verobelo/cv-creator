@@ -1,3 +1,5 @@
+import { translations } from "../logic/translation";
+
 export default function Experience({
   id,
   position,
@@ -8,6 +10,7 @@ export default function Experience({
   description,
   onChange,
   onRemove,
+  language,
 }) {
   return (
     <div className="experience__item form dotted-border">
@@ -19,7 +22,7 @@ export default function Experience({
         x
       </button>
       <label>
-        <strong>Position: </strong>
+        <strong>{translations[language].position}: </strong>
         <input
           type="text"
           name="position"
@@ -28,7 +31,7 @@ export default function Experience({
         />
       </label>
       <label>
-        <strong>Company Name: </strong>
+        <strong>{translations[language].company}: </strong>
         <input
           type="text"
           name="company-name"
@@ -37,7 +40,7 @@ export default function Experience({
         />
       </label>
       <label>
-        <strong>Company Address: </strong>
+        <strong>{translations[language].address}: </strong>
         <input
           type="text"
           name="company-address"
@@ -46,7 +49,7 @@ export default function Experience({
         />
       </label>
       <label>
-        <strong>Start Date: </strong>
+        <strong>{translations[language].startDate}: </strong>
         <input
           type="month"
           name="start-date"
@@ -55,7 +58,7 @@ export default function Experience({
         />
       </label>
       <label>
-        <strong>End Date: </strong>
+        <strong>{translations[language].endDate}: </strong>
         <input
           type="month"
           name="end-date"
@@ -64,7 +67,7 @@ export default function Experience({
         />
       </label>
       <label>
-        <strong>Description: </strong>
+        <strong>{translations[language].description}: </strong>
         <textarea
           name="description"
           rows={5}

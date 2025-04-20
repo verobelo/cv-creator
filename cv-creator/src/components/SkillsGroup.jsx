@@ -1,4 +1,5 @@
 import Skill from "./Skill";
+import { translations } from "../logic/translation";
 
 export default function SkillsGroup({
   id,
@@ -6,6 +7,7 @@ export default function SkillsGroup({
   skills,
   updateData,
   handleRemove,
+  language,
 }) {
   function handleOnChangeGroupName(e) {
     const newName = e.target.value;
@@ -57,7 +59,7 @@ export default function SkillsGroup({
   return (
     <>
       <label>
-        <strong>Skill Group: </strong>
+        <strong>{translations[language].skillGroup}: </strong>
         <input
           type="text"
           name="skill-group"
@@ -81,13 +83,14 @@ export default function SkillsGroup({
               name={skill.name}
               onChange={handleOnChangeSkillName}
               onRemove={handleRemoveSkill}
+              language={language}
             />
           </li>
         ))}
       </ul>
 
       <button type="button" onClick={handleAddSkill}>
-        + Add Skill
+        + {translations[language].addSkill}
       </button>
     </>
   );

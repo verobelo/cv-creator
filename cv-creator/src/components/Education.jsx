@@ -1,3 +1,5 @@
+import { translations } from "../logic/translation";
+
 export default function Education({
   id,
   degree,
@@ -5,6 +7,7 @@ export default function Education({
   completionDate,
   onChange,
   onRemove,
+  language,
 }) {
   return (
     <div className="education__item form flex-col dotted-border">
@@ -16,7 +19,7 @@ export default function Education({
         x
       </button>
       <label>
-        <strong>Degree:</strong>
+        <strong>{translations[language].degree}:</strong>
         <input
           type="text"
           name="degree"
@@ -26,7 +29,7 @@ export default function Education({
         />
       </label>
       <label>
-        <strong>Institution Name:</strong>
+        <strong>{translations[language].institution}:</strong>
         <input
           type="text"
           name="institution-name"
@@ -35,7 +38,7 @@ export default function Education({
         />
       </label>
       <label>
-        <strong>Completion Date:</strong>
+        <strong>{translations[language].completionDate}:</strong>
         <input
           type="month"
           name="completion-date"
