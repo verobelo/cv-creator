@@ -180,9 +180,7 @@ function App() {
         language={language}
       />
       <div className="preview-container">
-        <p className="preview-note">
-          This preview fits one A4 page. Keep your entries concise!
-        </p>
+        <p className="preview-note">{translations[language].alertPreview}</p>
         <CVPreview
           personalData={personalInfo}
           summaryData={summary}
