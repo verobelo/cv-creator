@@ -1,4 +1,4 @@
-export default function English() {
+export default function Spanish() {
   return (
     <svg
       version="1.0"
@@ -8,14 +8,15 @@ export default function English() {
       viewBox="0 0 512.000000 512.000000"
       preserveAspectRatio="xMidYMid meet">
       <defs>
-        <linearGradient id="gradYellowToRed" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style={{ stopColor: "yellow", stopOpacity: "1" }} />
-          <stop offset="100%" style={{ stopColor: "red", stopOpacity: "1" }} />
+        <linearGradient id="britishGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style={{ stopColor: "red", stopOpacity: "1" }} />
+          <stop offset="50%" style={{ stopColor: "white", stopOpacity: "1" }} />
+          <stop offset="100%" style={{ stopColor: "blue", stopOpacity: "1" }} />
         </linearGradient>
       </defs>
       <g
         transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-        fill="url(#gradYellowToRed)">
+        fill="url(#britishGradient)">
         <path
           d="M1949 4995 c-585 -95 -1074 -477 -1302 -1015 -155 -368 -172 -801
       -46 -1180 72 -217 180 -404 348 -600 l30 -35 -224 -225 c-238 -240 -252 -259
