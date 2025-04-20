@@ -1,4 +1,6 @@
-export default function EducationListPreview({ data }) {
+import { translations } from "../logic/translation";
+
+export default function EducationListPreview({ data, language }) {
   function formatMonthYear(dateStr) {
     if (!dateStr) return "";
     const [year, month] = dateStr.split("-");
@@ -6,7 +8,7 @@ export default function EducationListPreview({ data }) {
   }
   return (
     <section className="education-preview">
-      <h2>Education & Certifications</h2>
+      <h2>{translations[language].educationTitle}</h2>
       <div
         style={{
           height: "2px",

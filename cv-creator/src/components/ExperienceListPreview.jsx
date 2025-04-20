@@ -1,4 +1,6 @@
-export default function ExperienceListPreview({ data }) {
+import { translations } from "../logic/translation";
+
+export default function ExperienceListPreview({ data, language }) {
   function formatMonthYear(dateStr) {
     if (!dateStr) return "";
     const [year, month] = dateStr.split("-");
@@ -7,7 +9,7 @@ export default function ExperienceListPreview({ data }) {
 
   return (
     <section className="experience-preview">
-      <h2>Experience</h2>
+      <h2>{translations[language].experience}</h2>
       <div
         style={{
           height: "2px",

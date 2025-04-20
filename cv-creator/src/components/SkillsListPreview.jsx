@@ -1,7 +1,9 @@
-export default function SkillsListPreview({ data }) {
+import { translations } from "../logic/translation";
+
+export default function SkillsListPreview({ data, language }) {
   return (
     <section className="skills-preview">
-      <h2>Skills</h2>
+      <h2>{translations[language].skills}</h2>
       <div
         style={{
           height: "2px",
