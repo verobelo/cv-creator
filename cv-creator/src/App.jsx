@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FoldableSection from "./components/FoldableSection";
@@ -15,6 +14,7 @@ import ProjectsList from "./components/ProjectsList";
 import ProjectsListPreview from "./components/ProjectsListPreview";
 import EducationList from "./components/EducationList";
 import EducationListPreview from "./components/EducationListPreview";
+import { translations } from "./logic/translation";
 
 function App() {
   const [language, setLanguage] = useState("en");
@@ -177,6 +177,7 @@ function App() {
         onClearAll={handleClearAll}
         onPrint={handlePrint}
         onToggleLanguage={handleToggleLanguage}
+        language={language}
       />
       <div className="preview-container">
         <p className="preview-note">
@@ -189,6 +190,7 @@ function App() {
           experienceData={experienceList}
           projectsData={projectsList}
           educationData={educationList}
+          language={language}
         />
       </div>
       <Footer />
@@ -217,6 +219,7 @@ function CVForm({
   onClearAll,
   onPrint,
   onToggleLanguage,
+  language,
 }) {
   function handleClearPersonal() {
     updatePersonalData({
@@ -337,42 +340,62 @@ function CVForm({
         </button>
       </div>
       <FoldableSection
-        title="Personal Information"
+        title={translations[language].personalInfo}
         handleClear={handleClearPersonal}>
-        <PersonalInfoForm data={personalData} updateData={updatePersonalData} />
+        <PersonalInfoForm
+          data={personalData}
+          updateData={updatePersonalData}
+          language={language}
+        />
       </FoldableSection>
-      <FoldableSection title="Summary" handleClear={handleClearSummary}>
-        <Summary data={summaryData} updateData={updateSummaryData} />
+      <FoldableSection
+        title={translations[language].summary}
+        handleClear={handleClearSummary}>
+        <Summary
+          data={summaryData}
+          updateData={updateSummaryData}
+          language={language}
+        />
       </FoldableSection>
-      <FoldableSection title="Skills" handleClear={handleClearSkillList}>
+      <FoldableSection
+        title={translations[language].skills}
+        handleClear={handleClearSkillList}>
         <SkillsList
           data={skillsGroupsData}
           updateData={updateSkillsGroupsData}
           onAddGroup={onAddGroup}
           onRemoveGroup={onRemoveGroup}
+          language={language}
         />
       </FoldableSection>
       <FoldableSection
-        title="Experience"
+        title={translations[language].experience}
         handleClear={handleClearExperienceList}>
         <ExperienceList
           data={experienceData}
           updateData={updateExperienceData}
           onAddExperience={onAddExperience}
+          language={language}
         />
       </FoldableSection>
-      <FoldableSection title="Projects" handleClear={handleClearProjectsList}>
+      <FoldableSection
+        title={translations[language].projects}
+        handleClear={handleClearProjectsList}>
         <ProjectsList
           data={projectsData}
           updateData={updateProjectsData}
           onAddProject={onAddProject}
+          language={language}
         />
       </FoldableSection>
-      <FoldableSection title="Education" handleClear={handleClearEducationList}>
+      <FoldableSection
+        title={translations[language].education}
+        handleClear={handleClearEducationList}>
         <EducationList
           data={educationData}
           updateData={updateEducationData}
           onAddEducation={onAddEducation}
+          language={language}
         />
       </FoldableSection>
     </div>
@@ -386,15 +409,16 @@ function CVPreview({
   experienceData,
   projectsData,
   educationData,
+  language,
 }) {
   return (
     <div className="cv-preview">
       <PersonalInfoPreview data={personalData} />
       <SummaryPreview data={summaryData} />
-      <SkillsListPreview data={skillsGroupsData} />
-      <ExperienceListPreview data={experienceData} />
-      <ProjectsListPreview data={projectsData} />
-      <EducationListPreview data={educationData} />
+      <SkillsListPreview data={skillsGroupsData} language={language} />
+      <ExperienceListPreview data={experienceData} language={language} />
+      <ProjectsListPreview data={projectsData} language={language} />
+      <EducationListPreview data={educationData} language={language} />
     </div>
   );
 }
