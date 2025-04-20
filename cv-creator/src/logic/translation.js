@@ -30,8 +30,13 @@ export const translations = {
     // Projects
     projectName: "Project Name",
     technologies: "Technologies",
+    projectDescription: "Description",
     code: "Code",
     demo: "Demo",
+    // Education
+    degree: "Degree",
+    institution: "Institution Name",
+    completionDate: "Completion Date",
   },
   es: {
     // Personal Info
@@ -64,7 +69,12 @@ export const translations = {
     // Projects
     projectName: "Nombre del proyecto",
     technologies: "Tecnologías",
+    projectDescription: "Descripción",
     code: "Código",
     demo: "Demo",
+    // Education
+    degree: "Grado",
+    institution: "Centro de estudios",
+    completionDate: "Año de graduación",
   },
 };
