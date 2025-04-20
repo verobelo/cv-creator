@@ -37,6 +37,8 @@ export const translations = {
     degree: "Degree",
     institution: "Institution Name",
     completionDate: "Completion Date",
+    // Preview
+    educationTitle: "Education & Certifications",
   },
   es: {
     // Personal Info
@@ -76,5 +78,7 @@ export const translations = {
     degree: "Grado",
     institution: "Centro de estudios",
     completionDate: "Año de graduación",
+    // Preview
+    educationTitle: "Educación y Certificados",
   },
 };
