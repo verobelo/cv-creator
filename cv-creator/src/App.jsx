@@ -145,7 +145,7 @@ function App() {
   }
 
   function handlePrint() {
-    alert("Click on Settings to adjust your CV even more");
+    alert(translations[language].alertPrint);
     window.print();
   }
 
