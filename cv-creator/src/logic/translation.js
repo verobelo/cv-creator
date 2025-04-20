@@ -40,6 +40,8 @@ export const translations = {
     // Preview
     educationTitle: "Education & Certifications",
     alertPreview: "This preview fits one A4 page. Keep your entries concise!",
+    // Print
+    alertPrint: "Click on Settings to adjust your CV even more",
   },
   es: {
     // Personal Info
@@ -83,5 +85,7 @@ export const translations = {
     educationTitle: "Educación y Certificados",
     alertPreview:
       "Esta vista previa cabe en una página A4. ¡Mantenga su información concisa!",
+    // Print
+    alertPrint: "Haga clic en Configuración para ajustar aún más su CV",
   },
 };
