@@ -39,6 +39,7 @@ export const translations = {
     completionDate: "Completion Date",
     // Preview
     educationTitle: "Education & Certifications",
+    alertPreview: "This preview fits one A4 page. Keep your entries concise!",
   },
   es: {
     // Personal Info
@@ -80,5 +81,7 @@ export const translations = {
     completionDate: "Año de graduación",
     // Preview
     educationTitle: "Educación y Certificados",
+    alertPreview:
+      "Esta vista previa cabe en una página A4. ¡Mantenga su información concisa!",
   },
 };
