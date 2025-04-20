@@ -236,6 +236,7 @@ footer {
 .experience__item label:not(:last-child) {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .experience__item label:last-child {
@@ -247,6 +248,7 @@ footer {
 .project label:not(:nth-child(4)) {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .project label:nth-child(4) {
@@ -258,6 +260,7 @@ footer {
 .education__item label {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 /* CV preview */
