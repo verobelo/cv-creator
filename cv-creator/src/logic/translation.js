@@ -6,6 +6,16 @@ export const translations = {
     experience: "Experience",
     projects: "Projects",
     education: "Education",
+    fullName: "Full Name",
+    email: "Email",
+    phone: "Phone Number",
+    linkedin: "Linkedin",
+    github: "Github or Portfolio",
+    summaryPlaceholder:
+      "Write a short summary presenting yourself, your best skills, your goals etc",
+    addSkillGroup: "Add Skill Group",
+    skillGroup: "Skill Group",
+    addSkill: "Add Skill",
   },
   es: {
     personalInfo: "Información de contacto",
@@ -14,5 +24,15 @@ export const translations = {
     experience: "Experiencia",
     projects: "Proyectos",
     education: "Educación",
+    fullName: "Nombre completo",
+    email: "Email",
+    phone: "Teléfono",
+    linkedin: "Linkedin",
+    github: "Github o Portafolio",
+    summaryPlaceholder:
+      "Escriba un pequeño resumen de su trayectoria profesional, sus habilidades, sus metas etc",
+    addSkillGroup: "Añadir Grupo",
+    skillGroup: "Grupo de Habilidades",
+    addSkill: "Añadir Habilidad",
   },
 };
