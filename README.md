@@ -1,16 +1,22 @@
 **_REACT CV CREATOR_**
 
-This project was built to showcase my knowledge in React fundamentals (components, JSX, props, events, forms, state, lifting-up state, localStorage with useEffect).
+A lightweight, responsive application that lets users build and preview their CVs dynamically.  
+Built to reinforce core React concepts such as component architecture, JSX, props, event handling, controlled forms, state management, and localStorage usage via `useEffect`.
+
 
 **BUILT WITH**
 ---------------------------------------------------------------------
 - React
 - Vite
-- CSS (Responsive: grid, flex,media queries)
+- Vanilla CSS (Responsive: grid, flex, media queries)
 
 **BONUS**
 ---------------------------------------------------------------------
 
-The webpage has language toggle option (English - Spanish).
+- Language toggle option (English - Spanish).
+
+- **Language Toggle** – switch between **English** and **Spanish**
+- Fully printable layout with `@media print`
+- Clean, minimal UI for better user experience
 
 **[Live version](https://gitthatjob.vercel.app/)** 
