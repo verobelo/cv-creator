@@ -10,7 +10,7 @@ Built to reinforce core React concepts such as component architecture, JSX, prop
 - Vite
 - Vanilla CSS (Responsive: grid, flex, media queries)
 
-**BONUS**
+**Bonus**
 ---------------------------------------------------------------------
 
 - **Language Toggle** – switch between **English** and **Spanish**
