@@ -4,7 +4,7 @@ A lightweight, responsive application that lets users build and preview their CV
 Built to reinforce core React concepts such as component architecture, JSX, props, event handling, controlled forms, state management, and localStorage usage via `useEffect`.
 
 
-**BUILT WITH**
+**Built with**
 ---------------------------------------------------------------------
 - React
 - Vite
