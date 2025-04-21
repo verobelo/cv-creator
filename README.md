@@ -13,8 +13,6 @@ Built to reinforce core React concepts such as component architecture, JSX, prop
 **BONUS**
 ---------------------------------------------------------------------
 
-- Language toggle option (English - Spanish).
-
 - **Language Toggle** – switch between **English** and **Spanish**
 - Fully printable layout with `@media print`
 - Clean, minimal UI for better user experience
