@@ -14,14 +14,15 @@ export default function FoldableSection({ title, children, handleClear }) {
         className="foldable-section__header header"
         role="button"
         aria-expanded={isOpen}
-        tabIndex={0}>
+        tabIndex={0}
+        onClick={handleOpen}>
         <img
           src={isOpen ? "/down-arrow.png" : "/chevron.png"}
           alt="toggle"
           width={25}
           height={25}
         />
-        <h1 onClick={handleOpen}>{title}</h1>
+        <h1>{title}</h1>
         <ClearButton onClear={handleClear} />
       </div>
       <>{isOpen && children}</>
