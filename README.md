@@ -6,19 +6,20 @@ A lightweight, responsive application that lets users build and preview their CV
 
 
 **Built with**
----------------------------------------------------------------------
+---
 - React
 - Vite
 - Vanilla CSS (Responsive: grid, flex, media queries)
 
 **Bonus**
----------------------------------------------------------------------
+---
 
 - **Language Toggle** – switch between **English** and **Spanish**
 - Fully printable layout with `@media print`
 - Clean, minimal UI for better user experience
 
 **Key Learnings**
+---
 
 This project helped me reinforce:
 - React fundamentals (JSX, props, lifting state, form control)
