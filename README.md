@@ -1,7 +1,8 @@
 **_REACT CV CREATOR_**
 
 A lightweight, responsive application that lets users build and preview their CVs dynamically.  
-Built to reinforce core React concepts such as component architecture, JSX, props, event handling, controlled forms, state management, and localStorage usage via `useEffect`.
+
+**[LIVE VERSION](https://gitthatjob.vercel.app/)** 
 
 
 **Built with**
@@ -17,4 +18,15 @@ Built to reinforce core React concepts such as component architecture, JSX, prop
 - Fully printable layout with `@media print`
 - Clean, minimal UI for better user experience
 
-**[Live version](https://gitthatjob.vercel.app/)** 
+**Key Learnings**
+This project helped reinforce:
+- React fundamentals (JSX, props, lifting state, form control)
+- Side effects with `useEffect` and `localStorage`
+- Component-based architecture
+- Responsive design with pure CSS
+
+---
+
+**What's Next?**
+- Integrating AI-generated bullet points for Experience section (WIP)
+
