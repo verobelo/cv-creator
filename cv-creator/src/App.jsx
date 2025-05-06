@@ -15,6 +15,7 @@ import ProjectsListPreview from "./components/ProjectsListPreview";
 import EducationList from "./components/EducationList";
 import EducationListPreview from "./components/EducationListPreview";
 import { translations } from "./logic/translation";
+import FormButtonsGroup from "./components/FormButtonsGroup";
 import Spanish from "./components/English";
 import English from "./components/Spanish";
 
@@ -188,11 +189,13 @@ function App() {
   return (
     <div className="cv-container">
       <Header />
-      <CVForm
-        onClearAll={handleClearAll}
-        onPrint={handlePrint}
-        onToggleLanguage={handleToggleLanguage}
-        language={language}>
+      <CVForm>
+        <FormButtonsGroup
+          onClearAll={handleClearAll}
+          onPrint={handlePrint}
+          onToggleLanguage={handleToggleLanguage}
+          language={language}
+        />
         <FoldableSection
           title={translations[language].personalInfo}
           handleClear={handleClearPersonal}>
@@ -267,39 +270,8 @@ function App() {
   );
 }
 
-function CVForm({ children, onClearAll, onPrint, onToggleLanguage, language }) {
-  return (
-    <div className="cv-form">
-      <div className="buttons">
-        <button type="button" className="print-button" onClick={onPrint}>
-          <img
-            src="printer.png"
-            aria-label="print cv"
-            alt="printer icon"
-            width={35}
-            height={35}
-          />
-        </button>
-        <button type="button" className="clear-all-button" onClick={onClearAll}>
-          <img
-            src="./vacuum-cleaner.png"
-            alt="vacuum cleaner icon"
-            aria-label="clear all sections"
-            width={35}
-            height={35}
-          />
-        </button>
-        <button
-          type="button"
-          className="language-toggle-button"
-          aria-label="toggle language"
-          onClick={onToggleLanguage}>
-          {language === "en" ? <Spanish /> : <English />}
-        </button>
-      </div>
-      {children}
-    </div>
-  );
+function CVForm({ children }) {
+  return <div className="cv-form">{children}</div>;
 }
 
 function CVPreview({
