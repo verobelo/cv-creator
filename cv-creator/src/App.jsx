@@ -16,8 +16,6 @@ import EducationList from "./components/EducationList";
 import EducationListPreview from "./components/EducationListPreview";
 import { translations } from "./logic/translation";
 import FormButtonsGroup from "./components/FormButtonsGroup";
-import Spanish from "./components/English";
-import English from "./components/Spanish";
 
 function App() {
   const [language, setLanguage] = useState("en");
