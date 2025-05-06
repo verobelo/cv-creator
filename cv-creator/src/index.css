@@ -1,16 +1,15 @@
 @font-face {
   font-family: "cutive_monoregular";
-  src: url("../public/cutivemono-regular-webfont.woff2") format("woff2"),
-    url("../public/cutivemono-regular-webfont.woff") format("woff");
+  src: url("/cutivemono-regular-webfont.woff2") format("woff2"),
+    url("/cutivemono-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "eb_garamondregular";
-  src: url("../public/ebgaramond-variablefont_wght-webfont.woff2")
-      format("woff2"),
-    url("../public/ebgaramond-variablefont_wght-webfont.woff") format("woff");
+  src: url("/ebgaramond-variablefont_wght-webfont.woff2") format("woff2"),
+    url("/ebgaramond-variablefont_wght-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
