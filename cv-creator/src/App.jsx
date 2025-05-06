@@ -47,7 +47,7 @@ function App() {
     localStorage.setItem("cvSummary", JSON.stringify(summary));
   }, [summary]);
 
-  const [skillsGroups, setskillsGroups] = useState(() => {
+  const [skillsGroups, setSkillsGroups] = useState(() => {
     const stored = localStorage.getItem("cvSkillsGroups");
     return stored ? JSON.parse(stored) : [];
   });
@@ -85,12 +85,12 @@ function App() {
 
   function handleAddSkillsGroup() {
     const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
-    setskillsGroups((group) => [...group, newGroup]);
+    setSkillsGroups((group) => [...group, newGroup]);
   }
 
   function handleRemoveSkillsGroup(groupId) {
     const updatedGroups = skillsGroups.filter((group) => group.id !== groupId);
-    setskillsGroups(updatedGroups);
+    setSkillsGroups(updatedGroups);
   }
 
   function handleAddExperience() {
@@ -140,7 +140,7 @@ function App() {
       website: "",
     });
     setSummary("");
-    setskillsGroups([]);
+    setSkillsGroups([]);
     setExperienceList([]);
     setProjectsList([]);
     setEducationList([]);
@@ -155,32 +155,101 @@ function App() {
     setLanguage((prev) => (prev === "en" ? "es" : "en"));
   }
 
+  function handleClearPersonal() {
+    setPersonalInfo({
+      name: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      github: "",
+    });
+  }
+
+  function handleClearSummary() {
+    setSummary("");
+  }
+
+  function handleClearSkillList() {
+    setSkillsGroups([]);
+  }
+
+  function handleClearExperienceList() {
+    setExperienceList([]);
+  }
+
+  function handleClearProjectsList() {
+    setProjectsList([]);
+  }
+
+  function handleClearEducationList() {
+    setEducationList([]);
+  }
+
   return (
     <div className="cv-container">
       <Header />
       <CVForm
-        personalData={personalInfo}
-        updatePersonalData={setPersonalInfo}
-        summaryData={summary}
-        updateSummaryData={setSummary}
-        skillsGroupsData={skillsGroups}
-        updateSkillsGroupsData={setskillsGroups}
-        onAddGroup={handleAddSkillsGroup}
-        onRemoveGroup={handleRemoveSkillsGroup}
-        experienceData={experienceList}
-        updateExperienceData={setExperienceList}
-        onAddExperience={handleAddExperience}
-        projectsData={projectsList}
-        updateProjectsData={setProjectsList}
-        onAddProject={handleAddProject}
-        educationData={educationList}
-        updateEducationData={setEducationList}
-        onAddEducation={handleAddEducation}
         onClearAll={handleClearAll}
         onPrint={handlePrint}
         onToggleLanguage={handleToggleLanguage}
-        language={language}
-      />
+        language={language}>
+        <FoldableSection
+          title={translations[language].personalInfo}
+          handleClear={handleClearPersonal}>
+          <PersonalInfoForm
+            data={personalInfo}
+            updateData={setPersonalInfo}
+            language={language}
+          />
+        </FoldableSection>
+        <FoldableSection
+          title={translations[language].summary}
+          handleClear={handleClearSummary}>
+          <Summary data={summary} updateData={setSummary} language={language} />
+        </FoldableSection>
+        <FoldableSection
+          title={translations[language].skills}
+          handleClear={handleClearSkillList}>
+          <SkillsList
+            data={skillsGroups}
+            updateData={setSkillsGroups}
+            onAddGroup={handleAddSkillsGroup}
+            onRemoveGroup={handleRemoveSkillsGroup}
+            language={language}
+          />
+        </FoldableSection>
+        <FoldableSection
+          title={translations[language].experience}
+          handleClear={handleClearExperienceList}>
+          <ExperienceList
+            data={experienceList}
+            updateData={setExperienceList}
+            onAddExperience={handleAddExperience}
+            language={language}
+          />
+        </FoldableSection>
+        <FoldableSection
+          title={translations[language].projects}
+          handleClear={handleClearProjectsList}>
+          <ProjectsList
+            data={projectsList}
+            updateData={setProjectsList}
+            onAddProject={handleAddProject}
+            language={language}
+          />
+        </FoldableSection>
+        <FoldableSection
+          title={translations[language].education}
+          handleClear={handleClearEducationList}>
+          <EducationList
+            data={educationList}
+            updateData={setEducationList}
+            onAddEducation={handleAddEducation}
+            language={language}
+          />
+        </FoldableSection>
+      </CVForm>
+
       <div className="preview-container">
         <p className="preview-note">{translations[language].alertPreview}</p>
         <CVPreview
@@ -198,59 +267,7 @@ function App() {
   );
 }
 
-function CVForm({
-  personalData,
-  updatePersonalData,
-  summaryData,
-  updateSummaryData,
-  skillsGroupsData,
-  updateSkillsGroupsData,
-  onAddGroup,
-  onRemoveGroup,
-  experienceData,
-  updateExperienceData,
-  onAddExperience,
-  projectsData,
-  updateProjectsData,
-  onAddProject,
-  educationData,
-  updateEducationData,
-  onAddEducation,
-  onClearAll,
-  onPrint,
-  onToggleLanguage,
-  language,
-}) {
-  function handleClearPersonal() {
-    updatePersonalData({
-      name: "",
-      email: "",
-      phone: "",
-      linkedin: "",
-      github: "",
-    });
-  }
-
-  function handleClearSummary() {
-    updateSummaryData("");
-  }
-
-  function handleClearSkillList() {
-    updateSkillsGroupsData([]);
-  }
-
-  function handleClearExperienceList() {
-    updateExperienceData([]);
-  }
-
-  function handleClearProjectsList() {
-    updateProjectsData([]);
-  }
-
-  function handleClearEducationList() {
-    updateEducationData([]);
-  }
-
+function CVForm({ children, onClearAll, onPrint, onToggleLanguage, language }) {
   return (
     <div className="cv-form">
       <div className="buttons">
@@ -280,65 +297,7 @@ function CVForm({
           {language === "en" ? <Spanish /> : <English />}
         </button>
       </div>
-      <FoldableSection
-        title={translations[language].personalInfo}
-        handleClear={handleClearPersonal}>
-        <PersonalInfoForm
-          data={personalData}
-          updateData={updatePersonalData}
-          language={language}
-        />
-      </FoldableSection>
-      <FoldableSection
-        title={translations[language].summary}
-        handleClear={handleClearSummary}>
-        <Summary
-          data={summaryData}
-          updateData={updateSummaryData}
-          language={language}
-        />
-      </FoldableSection>
-      <FoldableSection
-        title={translations[language].skills}
-        handleClear={handleClearSkillList}>
-        <SkillsList
-          data={skillsGroupsData}
-          updateData={updateSkillsGroupsData}
-          onAddGroup={onAddGroup}
-          onRemoveGroup={onRemoveGroup}
-          language={language}
-        />
-      </FoldableSection>
-      <FoldableSection
-        title={translations[language].experience}
-        handleClear={handleClearExperienceList}>
-        <ExperienceList
-          data={experienceData}
-          updateData={updateExperienceData}
-          onAddExperience={onAddExperience}
-          language={language}
-        />
-      </FoldableSection>
-      <FoldableSection
-        title={translations[language].projects}
-        handleClear={handleClearProjectsList}>
-        <ProjectsList
-          data={projectsData}
-          updateData={updateProjectsData}
-          onAddProject={onAddProject}
-          language={language}
-        />
-      </FoldableSection>
-      <FoldableSection
-        title={translations[language].education}
-        handleClear={handleClearEducationList}>
-        <EducationList
-          data={educationData}
-          updateData={updateEducationData}
-          onAddEducation={onAddEducation}
-          language={language}
-        />
-      </FoldableSection>
+      {children}
     </div>
   );
 }
