@@ -1,3 +1,6 @@
+import Spanish from "./components/English";
+import English from "./components/Spanish";
+
 export default function FormButtonsGroup({
   onPrint,
   onClearAll,
