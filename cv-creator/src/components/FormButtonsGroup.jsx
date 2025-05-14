@@ -1,12 +1,27 @@
 import Spanish from "./Spanish.jsx";
 import English from "./English.jsx";
 
+import { useEffect } from "react";
+
 export default function FormButtonsGroup({
   onPrint,
   onClearAll,
   onToggleLanguage,
   language,
 }) {
+  useEffect(
+    function () {
+      if (language !== "en") {
+        document.title = "Git That Job | esp";
+      }
+
+      return function () {
+        document.title = "Git That Job";
+      };
+    },
+
+    [language]
+  );
   return (
     <div className="buttons">
       <button type="button" className="print-button" onClick={onPrint}>
