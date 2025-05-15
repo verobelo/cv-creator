@@ -83,28 +83,6 @@ function App() {
     setEducationList((prevList) => [...prevList, newEducation]);
   }
 
-  function handleClearAll() {
-    setPersonalInfo({
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-      linkedin: "",
-      github: "",
-      website: "",
-    });
-    setSummary("");
-    setSkillsGroups([]);
-    setExperienceList([]);
-    setProjectsList([]);
-    setEducationList([]);
-  }
-
-  function handlePrint() {
-    alert(translations[language].alertPrint);
-    window.print();
-  }
-
   function handleToggleLanguage() {
     setLanguage((prev) => (prev === "en" ? "es" : "en"));
   }
@@ -137,6 +115,28 @@ function App() {
 
   function handleClearEducationList() {
     setEducationList([]);
+  }
+
+  function handleClearAll() {
+    setPersonalInfo({
+      name: "",
+      email: "",
+      phone: "",
+      address: "",
+      linkedin: "",
+      github: "",
+      website: "",
+    });
+    setSummary("");
+    setSkillsGroups([]);
+    setExperienceList([]);
+    setProjectsList([]);
+    setEducationList([]);
+  }
+
+  function handlePrint() {
+    alert(translations[language].alertPrint);
+    window.print();
   }
 
   return (
