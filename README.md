@@ -24,6 +24,7 @@ A lightweight, responsive application that lets users build and preview their CV
 This project helped me reinforce:
 - React fundamentals (JSX, props, lifting state, form control)
 - Side effects with `useEffect` and `localStorage`
+- Creating custom hooks
 - Component-based architecture
 - Responsive design with pure CSS
 
