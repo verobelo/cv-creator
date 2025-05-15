@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import FoldableSection from "./components/FoldableSection";
@@ -16,71 +16,26 @@ import EducationList from "./components/EducationList";
 import EducationListPreview from "./components/EducationListPreview";
 import { translations } from "./logic/translation";
 import FormButtonsGroup from "./components/FormButtonsGroup";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 function App() {
   const [language, setLanguage] = useState("en");
 
-  const [personalInfo, setPersonalInfo] = useState(() => {
-    const stored = localStorage.getItem("cvPersonalInfo");
-    return stored
-      ? JSON.parse(stored)
-      : {
-          name: "",
-          email: "",
-          phone: "",
-          linkedin: "",
-          github: "",
-        };
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvPersonalInfo", JSON.stringify(personalInfo));
-  }, [personalInfo]);
-
-  const [summary, setSummary] = useState(() => {
-    const stored = localStorage.getItem("cvSummary");
-    return stored ? JSON.parse(stored) : "";
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvSummary", JSON.stringify(summary));
-  }, [summary]);
-
-  const [skillsGroups, setSkillsGroups] = useState(() => {
-    const stored = localStorage.getItem("cvSkillsGroups");
-    return stored ? JSON.parse(stored) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvSkillsGroups", JSON.stringify(skillsGroups));
-  }, [skillsGroups]);
-
-  const [experienceList, setExperienceList] = useState(() => {
-    const stored = localStorage.getItem("cvExperienceList");
-    return stored ? JSON.parse(stored) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvExperienceList", JSON.stringify(experienceList));
-  }, [experienceList]);
-
-  const [projectsList, setProjectsList] = useState(() => {
-    const stored = localStorage.getItem("cvProjectsList");
-    return stored ? JSON.parse(stored) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvProjectsList", JSON.stringify(projectsList));
-  }, [projectsList]);
-
-  const [educationList, setEducationList] = useState(() => {
-    const stored = localStorage.getItem("cvEducationList");
-    return stored ? JSON.parse(stored) : [];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("cvEducationList", JSON.stringify(educationList));
-  }, [educationList]);
+  const [personalInfo, setPersonalInfo] = useLocalStorage(
+    { name: "", email: "", phone: "", linkedin: "", github: "" },
+    "cvPersonalInfo"
+  );
+  const [summary, setSummary] = useLocalStorage("", "cvSummary");
+  const [skillsGroups, setSkillsGroups] = useLocalStorage([], "cvSkillsGroups");
+  const [experienceList, setExperienceList] = useLocalStorage(
+    [],
+    "cvExperienceList"
+  );
+  const [projectsList, setProjectsList] = useLocalStorage([], "cvProjectsList");
+  const [educationList, setEducationList] = useLocalStorage(
+    [],
+    "cvEducationList"
+  );
 
   function handleAddSkillsGroup() {
     const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
