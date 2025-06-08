@@ -1,71 +1,38 @@
 import { translations } from "../logic/translation";
-import { useForm } from "react-hook-form";
 
 export default function PersonalInfoForm({ data, updateData, language }) {
-  const {
-    register,
-    formState: { errors },
-  } = useForm({
-    defaultValues: data,
-    mode: "onChange",
-  });
-
-  const onChangeField = (field, value) => {
-    updateData({ ...data, [field]: value });
-  };
-
   return (
     <section className="personal-info">
-      <form className="personal-info__form form">
+      <div className="personal-info__form form">
         <label>
-          <strong>{translations[language].fullName}*:</strong>
+          <strong>{translations[language].fullName}:</strong>
           <input
-            {...register("name", {
-              required: "Name is required",
-              maxLength: 70,
-              pattern: /^[a-zA-Z\s]+$/,
-            })}
-            autoFocus
             type="text"
             name="name"
             placeholder="e.g. Java SCRIPSTON"
             value={data.name}
-            onChange={(e) => onChangeField("name", e.target.value)}
+            onChange={(e) => updateData({ ...data, name: e.target.value })}
           />
-          {errors.name && <span className="error">{errors.name.message}</span>}
         </label>
         <label>
-          <strong>{translations[language].email}*:</strong>
+          <strong>{translations[language].email}:</strong>
           <input
-            {...register("email", {
-              required: true,
-              validate: (value) => value.includes("@") && value.length > 5,
-            })}
             type="email"
             name="email"
             placeholder="e.g java.scripston@gmail.com"
             value={data.email}
-            onChange={(e) => onChangeField("email", e.target.value)}
+            onChange={(e) => updateData({ ...data, email: e.target.value })}
           />
-          {errors.email && (
-            <span className="error">{errors.email.message}</span>
-          )}
         </label>
         <label>
           <strong>{translations[language].phone}:</strong>
           <input
-            {...register("phone", {
-              pattern: /^\+?[0-9\s-]+$/,
-            })}
             type="tel"
             name="phone"
             placeholder="e.g. (+123)404-NOT-FOUND"
             value={data.phone}
-            onChange={(e) => onChangeField("phone", e.target.value)}
+            onChange={(e) => updateData({ ...data, phone: e.target.value })}
           />
-          {errors.email && (
-            <span className="error">{errors.phone.message}</span>
-          )}
         </label>
 
         <label>
@@ -75,7 +42,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="linkedin"
             placeholder="e.g. linkedin.com/in/javascripston"
             value={data.linkedin}
-            onChange={(e) => onChangeField("linkedin", e.target.value)}
+            onChange={(e) => updateData({ ...data, linkedin: e.target.value })}
           />
         </label>
         <label>
@@ -85,10 +52,10 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="github"
             placeholder="e.g. github.io/javascripston"
             value={data.github}
-            onChange={(e) => onChangeField("github", e.target.value)}
+            onChange={(e) => updateData({ ...data, github: e.target.value })}
           />
         </label>
-      </form>
+      </div>
     </section>
   );
 }
