@@ -21,7 +21,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
           <strong>{translations[language].fullName}*:</strong>
           <input
             {...register("name", {
-              required: true,
+              required: "Name is required",
               maxLength: 70,
               pattern: /^[a-zA-Z\s]+$/,
             })}
