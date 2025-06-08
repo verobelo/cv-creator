@@ -24,7 +24,7 @@ export default function ProjectsList({
   const isEmpty = data.length === 0;
   return (
     <section className="projects">
-      <div className="projects__form">
+      <form className="projects__form">
         <button type="button" onClick={onAddProject}>
           + {translations[language].add}
         </button>
@@ -45,7 +45,7 @@ export default function ProjectsList({
             </li>
           ))}
         </ul>
-      </div>
+      </form>
     </section>
   );
 }

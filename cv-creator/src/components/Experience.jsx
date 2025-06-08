@@ -13,7 +13,7 @@ export default function Experience({
   language,
 }) {
   return (
-    <div className="experience__item form dotted-border">
+    <form className="experience__item form dotted-border">
       <button
         type="button"
         className="remove-button"
@@ -76,6 +76,6 @@ export default function Experience({
           onChange={(e) => onChange(id, "description", e.target.value)}
         />
       </label>
-    </div>
+    </form>
   );
 }

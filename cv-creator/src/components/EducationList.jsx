@@ -27,7 +27,7 @@ export default function EducationList({
 
   return (
     <section className="education">
-      <div className="education__form">
+      <form className="education__form">
         <button type="button" onClick={onAddEducation}>
           + {translations[language].add}
         </button>
@@ -46,7 +46,7 @@ export default function EducationList({
             </li>
           ))}
         </ul>
-      </div>
+      </form>
     </section>
   );
 }
