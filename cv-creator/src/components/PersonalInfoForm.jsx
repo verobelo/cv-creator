@@ -2,10 +2,17 @@ import { translations } from "../logic/translation";
 import { useForm } from "react-hook-form";
 
 export default function PersonalInfoForm({ data, updateData, language }) {
-  const { register } = useForm({
+  const {
+    register,
+    formState: { errors },
+  } = useForm({
     defaultValues: data,
     mode: "onChange",
   });
+
+  const onChangeField = (field, value) => {
+    updateData({ ...data, [field]: value });
+  };
 
   return (
     <section className="personal-info">
@@ -23,7 +30,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="name"
             placeholder="e.g. Java SCRIPSTON"
             value={data.name}
-            onChange={(e) => updateData({ ...data, name: e.target.value })}
+            onChange={(e) => onChangeField("name", e.target.value)}
           />
         </label>
         <label>
@@ -31,14 +38,13 @@ export default function PersonalInfoForm({ data, updateData, language }) {
           <input
             {...register("email", {
               required: true,
-              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              validate: (value) => value.includes("@") && value.length > 5,
             })}
-            autoFocus
             type="email"
             name="email"
             placeholder="e.g java.scripston@gmail.com"
             value={data.email}
-            onChange={(e) => updateData({ ...data, email: e.target.value })}
+            onChange={(e) => onChangeField("email", e.target.value)}
           />
         </label>
         <label>
@@ -47,12 +53,11 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             {...register("phone", {
               pattern: /^\+?[0-9\s-]+$/,
             })}
-            autoFocus
             type="tel"
             name="phone"
             placeholder="e.g. (+123)404-NOT-FOUND"
             value={data.phone}
-            onChange={(e) => updateData({ ...data, phone: e.target.value })}
+            onChange={(e) => onChangeField("phone", e.target.value)}
           />
         </label>
 
@@ -63,7 +68,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="linkedin"
             placeholder="e.g. linkedin.com/in/javascripston"
             value={data.linkedin}
-            onChange={(e) => updateData({ ...data, linkedin: e.target.value })}
+            onChange={(e) => onChangeField("linkedin", e.target.value)}
           />
         </label>
         <label>
@@ -73,7 +78,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="github"
             placeholder="e.g. github.io/javascripston"
             value={data.github}
-            onChange={(e) => updateData({ ...data, github: e.target.value })}
+            onChange={(e) => onChangeField("github", e.target.value)}
           />
         </label>
       </form>
