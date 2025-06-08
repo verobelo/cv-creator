@@ -32,6 +32,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             value={data.name}
             onChange={(e) => onChangeField("name", e.target.value)}
           />
+          {errors.name && <span className="error">{errors.name.message}</span>}
         </label>
         <label>
           <strong>{translations[language].email}*:</strong>
@@ -46,6 +47,9 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             value={data.email}
             onChange={(e) => onChangeField("email", e.target.value)}
           />
+          {errors.email && (
+            <span className="error">{errors.email.message}</span>
+          )}
         </label>
         <label>
           <strong>{translations[language].phone}:</strong>
@@ -59,6 +63,9 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             value={data.phone}
             onChange={(e) => onChangeField("phone", e.target.value)}
           />
+          {errors.email && (
+            <span className="error">{errors.phone.message}</span>
+          )}
         </label>
 
         <label>
