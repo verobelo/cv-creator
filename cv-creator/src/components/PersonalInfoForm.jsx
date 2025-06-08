@@ -10,7 +10,12 @@ export default function PersonalInfoForm({ data, updateData, language }) {
         <label>
           <strong>{translations[language].fullName}*:</strong>
           <input
-            {...register("name")}
+            {...register("name", {
+              required: true,
+              maxLength: 70,
+              pattern: /^[a-zA-Z\s]+$/,
+            })}
+            autoFocus
             type="text"
             name="name"
             placeholder="e.g. Java SCRIPSTON"
