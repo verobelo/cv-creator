@@ -2,7 +2,10 @@ import { translations } from "../logic/translation";
 import { useForm } from "react-hook-form";
 
 export default function PersonalInfoForm({ data, updateData, language }) {
-  const { register } = useForm();
+  const { register } = useForm({
+    defaultValues: data,
+    mode: "onChange",
+  });
 
   return (
     <section className="personal-info">
@@ -26,7 +29,11 @@ export default function PersonalInfoForm({ data, updateData, language }) {
         <label>
           <strong>{translations[language].email}*:</strong>
           <input
-            {...register("email")}
+            {...register("email", {
+              required: true,
+              pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            })}
+            autoFocus
             type="email"
             name="email"
             placeholder="e.g java.scripston@gmail.com"
@@ -37,7 +44,10 @@ export default function PersonalInfoForm({ data, updateData, language }) {
         <label>
           <strong>{translations[language].phone}:</strong>
           <input
-            {...register("phone")}
+            {...register("phone", {
+              pattern: /^\+?[0-9\s-]+$/,
+            })}
+            autoFocus
             type="tel"
             name="phone"
             placeholder="e.g. (+123)404-NOT-FOUND"
