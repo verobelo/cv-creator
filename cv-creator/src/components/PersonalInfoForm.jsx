@@ -1,12 +1,16 @@
 import { translations } from "../logic/translation";
+import { useForm } from "react-hook-form";
 
 export default function PersonalInfoForm({ data, updateData, language }) {
+  const { register } = useForm();
+
   return (
     <section className="personal-info">
-      <div className="personal-info__form form">
+      <form className="personal-info__form form">
         <label>
-          <strong>{translations[language].fullName}:</strong>
+          <strong>{translations[language].fullName}*:</strong>
           <input
+            {...register("name")}
             type="text"
             name="name"
             placeholder="e.g. Java SCRIPSTON"
@@ -15,8 +19,9 @@ export default function PersonalInfoForm({ data, updateData, language }) {
           />
         </label>
         <label>
-          <strong>{translations[language].email}:</strong>
+          <strong>{translations[language].email}*:</strong>
           <input
+            {...register("email")}
             type="email"
             name="email"
             placeholder="e.g java.scripston@gmail.com"
@@ -27,6 +32,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
         <label>
           <strong>{translations[language].phone}:</strong>
           <input
+            {...register("phone")}
             type="tel"
             name="phone"
             placeholder="e.g. (+123)404-NOT-FOUND"
@@ -55,7 +61,7 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             onChange={(e) => updateData({ ...data, github: e.target.value })}
           />
         </label>
-      </div>
+      </form>
     </section>
   );
 }
