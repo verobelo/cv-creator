@@ -7,32 +7,30 @@ export default function PersonalInfoForm({
   errors,
   setErrors,
 }) {
+  const translation = translations[language];
+
   const validateField = (name, value) => {
     const newErrors = { ...errors };
 
     if (name === "name") {
-      newErrors.name = value.trim() ? "" : translations[language].nameError;
+      newErrors.name = value.trim() ? "" : translation.nameError;
     }
 
     if (name === "email") {
       newErrors.email =
-        value.includes("@") && value.length > 5
-          ? ""
-          : translations[language].emailError;
+        value.includes("@") && value.length > 5 ? "" : translation.emailError;
     }
 
     if (name === "phone") {
       newErrors.phone =
         value === "" || /^\+?[0-9\s-]+$/.test(value)
           ? ""
-          : translations[language].phoneError;
+          : translation.phoneError;
     }
 
     if (name === "linkedin" || name === "github") {
       newErrors[name] =
-        value === "" || value.includes(".")
-          ? ""
-          : translations[language].websiteError;
+        value === "" || value.includes(".") ? "" : translation.websiteError;
     }
 
     setErrors(newErrors);
