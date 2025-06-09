@@ -11,7 +11,7 @@ export const translations = {
     email: "Email",
     phone: "Phone Number",
     linkedin: "Linkedin",
-    github: "Github or Portfolio",
+    github: "Website",
     // Summary
     summaryPlaceholder:
       "Write a short summary presenting yourself, your best skills, your goals etc",
@@ -42,6 +42,11 @@ export const translations = {
     alertPreview: "This preview fits one A4 page. Keep your entries concise!",
     // Print
     alertPrint: "Click on Settings to adjust your CV even more",
+    //Validation
+    nameError: "Please enter valid name and surname",
+    emailError: "Please enter a valid email address",
+    phoneError: "Please enter a valid phone number",
+    websiteError: "Please enter a valid website URL",
   },
   es: {
     // Personal Info
@@ -55,7 +60,7 @@ export const translations = {
     email: "Email",
     phone: "Teléfono",
     linkedin: "Linkedin",
-    github: "Github o Portafolio",
+    github: "Sitio web",
     // Summary
     summaryPlaceholder:
       "Escriba un pequeño resumen de su trayectoria profesional, sus habilidades, sus metas etc",
@@ -87,5 +92,10 @@ export const translations = {
       "Esta vista previa cabe en una página A4. ¡Mantenga su información concisa!",
     // Print
     alertPrint: "Haga clic en Configuración para ajustar aún más su CV",
+    //Validation
+    nameError: "Por favor, introduzca un nombre válido",
+    emailError: "Por favor, introduzca un correo electrónico válido",
+    phoneError: "Por favor, introduzca un número de teléfono válido",
+    websiteError: "Por favor, introduzca una URL válida",
   },
 };
