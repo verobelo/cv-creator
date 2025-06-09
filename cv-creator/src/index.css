@@ -440,4 +440,9 @@ footer {
   font-size: 0.8rem;
   margin-top: 4px;
   display: block;
+  align-self: center;
+}
+
+.invalid {
+  border: 1px solid red;
 }
