@@ -102,6 +102,13 @@ function App() {
       linkedin: "",
       github: "",
     });
+    setErrors({
+      name: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      github: "",
+    });
   }
 
   function handleClearSummary() {
