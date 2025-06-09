@@ -1,29 +1,76 @@
 import { translations } from "../logic/translation";
 
-export default function PersonalInfoForm({ data, updateData, language }) {
+export default function PersonalInfoForm({
+  data,
+  updateData,
+  language,
+  errors,
+  setErrors,
+}) {
+  const validateField = (name, value) => {
+    const newErrors = { ...errors };
+
+    if (name === "name") {
+      newErrors.name = value.trim() ? "" : translations[language].nameError;
+    }
+
+    if (name === "email") {
+      newErrors.email =
+        value.includes("@") && value.length > 5
+          ? ""
+          : translations[language].emailError;
+    }
+
+    if (name === "phone") {
+      newErrors.phone =
+        value === "" || /^\+?[0-9\s-]+$/.test(value)
+          ? ""
+          : translations[language].phoneError;
+    }
+
+    if (name === "linkedin" || name === "github") {
+      newErrors[name] =
+        value === "" || value.includes(".")
+          ? ""
+          : translations[language].websiteError;
+    }
+
+    setErrors(newErrors);
+  };
+
+  const handleChange = (field, value) => {
+    updateData({ ...data, [field]: value });
+    validateField(field, value);
+  };
+
   return (
     <section className="personal-info">
       <div className="personal-info__form form">
         <label>
-          <strong>{translations[language].fullName}:</strong>
+          <strong>{translations[language].fullName}*:</strong>
           <input
+            autoFocus
             type="text"
             name="name"
             placeholder="e.g. Java SCRIPSTON"
             value={data.name}
-            onChange={(e) => updateData({ ...data, name: e.target.value })}
+            onChange={(e) => handleChange("name", e.target.value)}
+            className={errors.name ? "invalid" : ""}
           />
         </label>
+        {errors.name && <span className="error">{errors.name}</span>}
         <label>
-          <strong>{translations[language].email}:</strong>
+          <strong>{translations[language].email}*:</strong>
           <input
             type="email"
             name="email"
             placeholder="e.g java.scripston@gmail.com"
             value={data.email}
-            onChange={(e) => updateData({ ...data, email: e.target.value })}
+            onChange={(e) => handleChange("email", e.target.value)}
+            className={errors.email ? "invalid" : ""}
           />
         </label>
+        {errors.email && <span className="error">{errors.email}</span>}
         <label>
           <strong>{translations[language].phone}:</strong>
           <input
@@ -31,10 +78,11 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="phone"
             placeholder="e.g. (+123)404-NOT-FOUND"
             value={data.phone}
-            onChange={(e) => updateData({ ...data, phone: e.target.value })}
+            onChange={(e) => handleChange("phone", e.target.value)}
+            className={errors.phone ? "invalid" : ""}
           />
         </label>
-
+        {errors.phone && <span className="error">{errors.phone}</span>}
         <label>
           <strong>{translations[language].linkedin}:</strong>
           <input
@@ -42,9 +90,12 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="linkedin"
             placeholder="e.g. linkedin.com/in/javascripston"
             value={data.linkedin}
-            onChange={(e) => updateData({ ...data, linkedin: e.target.value })}
+            onChange={(e) => handleChange("linkedin", e.target.value)}
+            className={errors.linkedin ? "invalid" : ""}
           />
         </label>
+        {errors.linkedin && <span className="error">{errors.linkedin}</span>}
+
         <label>
           <strong>{translations[language].github}:</strong>
           <input
@@ -52,9 +103,11 @@ export default function PersonalInfoForm({ data, updateData, language }) {
             name="github"
             placeholder="e.g. github.io/javascripston"
             value={data.github}
-            onChange={(e) => updateData({ ...data, github: e.target.value })}
+            onChange={(e) => handleChange("github", e.target.value)}
+            className={errors.github ? "invalid" : ""}
           />
         </label>
+        {errors.github && <span className="error">{errors.github}</span>}
       </div>
     </section>
   );
