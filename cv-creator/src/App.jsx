@@ -36,6 +36,13 @@ function App() {
     [],
     "cvEducationList"
   );
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    linkedin: "",
+    github: "",
+  });
 
   function handleAddSkillsGroup() {
     const newGroup = { id: crypto.randomUUID(), name: "", skills: [] };
@@ -132,6 +139,13 @@ function App() {
     setExperienceList([]);
     setProjectsList([]);
     setEducationList([]);
+    setErrors({
+      name: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      github: "",
+    });
   }
 
   function handlePrint() {
@@ -156,6 +170,8 @@ function App() {
             data={personalInfo}
             updateData={setPersonalInfo}
             language={language}
+            errors={errors}
+            setErrors={setErrors}
           />
         </FoldableSection>
         <FoldableSection
