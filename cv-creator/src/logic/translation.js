@@ -94,8 +94,8 @@ export const translations = {
     alertPrint: "Haga clic en Configuración para ajustar aún más su CV",
     //Validation
     nameError: "Por favor, introduzca un nombre válido",
-    emailError: "Por favor, introduzca un correo electrónico válido",
-    phoneError: "Por favor, introduzca un número de teléfono válido",
+    emailError: "Por favor, introduzca un email válido",
+    phoneError: "Por favor, introduzca un número válido",
     websiteError: "Por favor, introduzca una URL válida",
   },
 };
