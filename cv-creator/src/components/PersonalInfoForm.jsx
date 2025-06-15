@@ -23,7 +23,7 @@ export default function PersonalInfoForm({
 
     if (name === "phone") {
       newErrors.phone =
-        value === "" || /^\+?[0-9\s-]+$/.test(value)
+        value === "" || /^(\+|\(\+?\d{1,4}\)|\d)[\d\s\-()]{5,}$/.test(value)
           ? ""
           : translation.phoneError;
     }
