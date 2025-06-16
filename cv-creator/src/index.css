@@ -283,6 +283,7 @@ footer {
 
 .personal-info-preview__contacts {
   display: flex;
+  justify-content: space-evenly;
   gap: 1.3rem;
   font-size: 0.9rem;
   flex-wrap: wrap;
