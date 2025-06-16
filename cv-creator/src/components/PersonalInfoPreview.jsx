@@ -8,16 +8,27 @@ export default function PersonalInfoPreview({ data }) {
           <span>{data.email}</span>
         </li>
         <li>
-          <img src="telephone.png" alt="phone icon" width={15} height={15} />
+          {data.phone && (
+            <img src="telephone.png" alt="phone icon" width={15} height={15} />
+          )}
           {data.phone}
         </li>
 
         <li>
-          <img src="linkedin.png" alt="linkedin icon" width={15} height={15} />
+          {data.linkedin && (
+            <img
+              src="linkedin.png"
+              alt="linkedin icon"
+              width={15}
+              height={15}
+            />
+          )}
           {data.linkedin}
         </li>
         <li>
-          <img src="web.png" alt="github icon" width={15} height={15} />
+          {data.github && (
+            <img src="web.png" alt="github icon" width={15} height={15} />
+          )}
           {data.github}
         </li>
       </ul>

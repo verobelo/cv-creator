@@ -48,6 +48,7 @@ export default function PersonalInfoForm({
           <strong>{translations[language].fullName}*:</strong>
           <input
             autoFocus
+            required
             type="text"
             name="name"
             placeholder="e.g. Java SCRIPSTON"
@@ -60,6 +61,7 @@ export default function PersonalInfoForm({
         <label>
           <strong>{translations[language].email}*:</strong>
           <input
+            required
             type="email"
             name="email"
             placeholder="e.g java.scripston@gmail.com"
@@ -95,8 +97,9 @@ export default function PersonalInfoForm({
         {errors.linkedin && <span className="error">{errors.linkedin}</span>}
 
         <label>
-          <strong>{translations[language].github}:</strong>
+          <strong>{translations[language].github}*:</strong>
           <input
+            required
             type="text"
             name="github"
             placeholder="e.g. github.io/javascripston"
