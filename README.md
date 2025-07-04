@@ -2,7 +2,7 @@
 
 A lightweight, responsive application that lets users build and preview their CVs dynamically.  
 
-**[LIVE VERSION](https://gitthatjob.vercel.app/)** 
+**🔗 [LIVE VERSION](https://gitthatjob.vercel.app/)** 
 
 
 **🛠️ Built with**
