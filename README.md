@@ -5,7 +5,7 @@ A lightweight, responsive application that lets users build and preview their CV
 **[LIVE VERSION](https://gitthatjob.vercel.app/)** 
 
 
-**Built with**
+**🛠️ Built with**
 ---
 - React
 - Vite
