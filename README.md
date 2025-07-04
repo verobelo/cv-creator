@@ -18,7 +18,7 @@ A lightweight, responsive application that lets users build and preview their CV
 - Fully printable layout with `@media print`
 - Clean, minimal UI for better user experience
 
-**Key Learnings**
+**👓 Key Learnings**
 ---
 
 This project helped me reinforce:
