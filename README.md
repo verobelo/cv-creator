@@ -1,4 +1,4 @@
-**_REACT CV CREATOR_**
+**🌐 _REACT CV CREATOR_**
 
 A lightweight, responsive application that lets users build and preview their CVs dynamically.  
 
