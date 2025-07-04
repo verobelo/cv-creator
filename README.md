@@ -11,7 +11,7 @@ A lightweight, responsive application that lets users build and preview their CV
 - Vite
 - Vanilla CSS (Responsive: grid, flex, media queries)
 
-**Bonus**
+**✨ Bonus**
 ---
 
 - **Language Toggle** – switch between **English** and **Spanish**
