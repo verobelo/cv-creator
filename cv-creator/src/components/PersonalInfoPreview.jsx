@@ -1,15 +1,17 @@
 export default function PersonalInfoPreview({ data }) {
   return (
-    <section className="personal-info-preview">
-      <h1 style={{ marginBottom: "0.5rem" }}>{data.name}</h1>
-      <ul className="personal-info-preview__contacts">
+    <section className='personal-info-preview'>
+      <h1 style={{ marginBottom: '0.5rem' }}>{data.name}</h1>
+      <ul className='personal-info-preview__contacts'>
         <li>
-          <img src="email.png" alt="email icon" width={15} height={15} />
+          {data.email && (
+            <img src='email.png' alt='email icon' width={15} height={15} />
+          )}
           <span>{data.email}</span>
         </li>
         <li>
           {data.phone && (
-            <img src="telephone.png" alt="phone icon" width={15} height={15} />
+            <img src='telephone.png' alt='phone icon' width={15} height={15} />
           )}
           {data.phone}
         </li>
@@ -17,8 +19,8 @@ export default function PersonalInfoPreview({ data }) {
         <li>
           {data.linkedin && (
             <img
-              src="linkedin.png"
-              alt="linkedin icon"
+              src='linkedin.png'
+              alt='linkedin icon'
               width={15}
               height={15}
             />
@@ -27,7 +29,7 @@ export default function PersonalInfoPreview({ data }) {
         </li>
         <li>
           {data.github && (
-            <img src="web.png" alt="github icon" width={15} height={15} />
+            <img src='web.png' alt='github icon' width={15} height={15} />
           )}
           {data.github}
         </li>
