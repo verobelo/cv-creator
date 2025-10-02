@@ -1,24 +1,24 @@
-**_REACT CV CREATOR_**
+**🌐 _REACT CV CREATOR_**
 
 A lightweight, responsive application that lets users build and preview their CVs dynamically.  
 
-**[LIVE VERSION](https://gitthatjob.vercel.app/)** 
+**🔗 [LIVE VERSION](https://gitthatjob.vercel.app/)** 
 
 
-**Built with**
+**🛠️ Built with**
 ---
 - React
 - Vite
 - Vanilla CSS (Responsive: grid, flex, media queries)
 
-**Bonus**
+**✨ Bonus**
 ---
 
 - **Language Toggle** – switch between **English** and **Spanish**
 - Fully printable layout with `@media print`
 - Clean, minimal UI for better user experience
 
-**Key Learnings**
+**👓 Key Learnings**
 ---
 
 This project helped me reinforce:
