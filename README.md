@@ -23,7 +23,7 @@
 
 ## 🎭 Live Demo
 
-<a href="https://www.loom.com/share/b1cd2fa31b504ad0bd49456f597b8f9f?sid=25cd6184-0bab-462e-a89b-a2b8ce02b9e8">
+<a href="https://www.loom.com/share/b1cd2fa31b504ad0bd49456f597b8f9f?sid=25cd6184-0bab-462e-a89b-a2b8ce02b9e8" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/📹_Watch_1min_Demo-Click_Here-blue?style=for-the-badge" alt="Watch Demo">
 </a>
   
@@ -53,20 +53,17 @@
 
 Having gone through a career transition myself and supported friends in their job searches, I identified these pain points:
 
-**For Job Seekers:**
 - Expensive CV builder subscriptions ($10-30/month)
 - No immediate visual feedback while editing
 - Language barriers for bilingual job seekers
 - Poor PDF formatting from most free tools
 - Fear of losing work due to accidental tab closes
 
-**The Frustration:** People spend more time wrestling with CV tools than focusing on their actual content and job applications.
-
 ---
 
 ## ✅ The Solution
 
-A streamlined CV builder that prioritizes speed, simplicity, and user experience.
+A streamlined free-of-charge CV builder that prioritizes speed, simplicity, and user experience.
 
 **Technical Decisions:**
 - **window.print()** for PDF generation - leverages native browser capabilities for consistent, high-quality output
